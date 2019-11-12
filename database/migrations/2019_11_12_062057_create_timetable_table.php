@@ -17,6 +17,7 @@ class CreateTimetableTable extends Migration
             $table->bigIncrements('id');
             $table->text('timetable_name');
             $table->json('timetable_info');
+            $table->bigInteger ("user_id");
             $table->foreign('user_id')
                 ->references ('id')->on('users')
                 ->onUpdate('cascade')
