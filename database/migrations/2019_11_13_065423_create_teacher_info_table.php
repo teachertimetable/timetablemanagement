@@ -13,14 +13,7 @@ class CreateTeacherInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('teacher_info', function (Blueprint $table) {
-            $table->text('teacher_id')->primary();
-            $table->text('teacher_name');
-            $table->text('teacher_pic_src');
-            $table->text('teacher_email');
-            $table->text('teacher_tel');
-            $table->timestamps();
-        });
+
     }
 
     /**

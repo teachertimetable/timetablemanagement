@@ -15,7 +15,7 @@ class CreateTimetableTable extends Migration
     {
         Schema::create('timetable_main', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('timetable_name');
+            $table->string('timetable_name');
             $table->json('timetable_info');
             $table->bigInteger ("user_id");
             $table->foreign('user_id')
