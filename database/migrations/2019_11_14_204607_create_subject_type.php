@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTeacherInfoTable extends Migration
+class CreateSubjectType extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,11 @@ class CreateTeacherInfoTable extends Migration
      */
     public function up()
     {
-
+        Schema::create('subject_type', function (Blueprint $table) {
+            $table->string('subject_type_id')->primary ();
+            $table->string('subject_describe');
+            $table->string('subject_type');
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class CreateTeacherInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teacher_info');
+        Schema::dropIfExists('subject_type');
     }
 }
