@@ -19,6 +19,9 @@ Auth::routes();
 
 /* TIMETABLE MANAGEMENT ROUTER */
 
+    /* HOME CONTROLLER */
+    Route::get('/','HomeController@index');
+
     /* TIMETABLE CONTROLLER */
     Route::get('/management/timetable','TimeTableController@index')->name('timetable');
     Route::get('/management/timetable/normal','TimeTableController@normal_view')->name('timetable_normal');

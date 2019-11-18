@@ -18,6 +18,44 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        body,
+        html {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+            scroll-behavior: smooth;
+
+        }
+
+        .parallax {
+            /* The image used */
+            background-image: url("https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+
+            /* Set a specific height */
+            min-height: 500px;
+
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .loginbg {
+
+            margin-top: 7%;
+            margin-bottom: 7%;
+            margin-left: 15%;
+            margin-right: 15%;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            background-color: white;
+            box-shadow: 0px 11px 18px -16px rgba(0, 0, 0, 0.75);
+        }
+    </style>
 </head>
 <body>
     <div id="app">
