@@ -30,7 +30,8 @@ Auth::routes();
     /* SUBJECT CONTROLLER */
 
     /* LECTURER CONTROLLER */
-    Route::get('/management/lecturerlist','LecturerController@index')->name('lecturer_list');
+    Route::resource('/management/lecturerlist','RESTController\LecturerREST');
+    Route::resource('/management/subjectlist','RESTController\SubjectREST');
     /* LECTURER CONTROLLER */
 
 /* TIMETABLE MANAGEMENT ROUTER */

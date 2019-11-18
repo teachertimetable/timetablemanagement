@@ -36,10 +36,10 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('subject') }}">รายวิชา</a>
+                        <a class="nav-link" href="{{ route('subjectlist.index') }}">รายวิชา</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('lecturer_list') }}">รายชื่ออาจารย์</a>
+                        <a class="nav-link" href="{{ route('lecturerlist.index') }}">รายชื่ออาจารย์</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
