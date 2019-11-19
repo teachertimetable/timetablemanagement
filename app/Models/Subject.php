@@ -11,10 +11,10 @@ class Subject extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'subject_id','subject_name','credit','teacher_id','start_time','end_time'
+        'subject_id','subject_name','credit'
     ];
 
     public function have(){
-        return $this->hasMany ('App\Models\TeacherInfo');
+        return $this->hasOne ('App\Models\Category');
     }
 }

@@ -65040,10 +65040,23 @@ $(function () {
         data: "subject_name",
         name: "subject_name"
       }, {
-        data: "credit",
+        data: function data(d) {
+          return d.credit.substring(0, 1);
+        },
         name: "credit"
       }, {
-        data: "credit",
+        data: function data(d) {
+          var subcredit = "";
+          var sumiresubcredit = d.credit.substring(2, 7);
+
+          if (sumiresubcredit === '') {
+            subcredit = "ไม่มีการเรียนการสอน";
+          } else {
+            subcredit = sumiresubcredit;
+          }
+
+          return subcredit;
+        },
         name: "credit"
       }]
     });

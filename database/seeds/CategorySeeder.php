@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Subject;
+use App\Models\Category;
+use Illuminate\Support\Facades\Artisan;
 
-class SubjectSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
+
     /**
      * DB table name
      *
@@ -30,9 +32,9 @@ class SubjectSeeder extends Seeder
      */
     public function run()
     {
-        Subject::truncate();
-        $seedData = $this->seedFromCSV("database/csv/Subject.csv", ',');
-        Subject::insert($seedData);
+        Category::truncate();
+        $seedData = $this->seedFromCSV("database/csv/category.csv", ',');
+        Category::insert($seedData);
     }
 
     /**

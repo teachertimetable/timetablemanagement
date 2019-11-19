@@ -22,7 +22,7 @@
     <style>
         body,
         html {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Sarabun', sans-serif;
             font-size: 15px;
             scroll-behavior: smooth;
 
