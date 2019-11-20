@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title }}</title>
+    <title> @if(isset($title)) {{ $title }} @else Timetable Management System @endif</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
