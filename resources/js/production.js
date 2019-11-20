@@ -1,3 +1,4 @@
+const Swal = require('sweetalert2');
 require('datatables.net-bs4');
 
 /* DATATABLES (/management/lecturerlist) (/management/subjectlist)*/
@@ -67,6 +68,26 @@ $(function() {
                     name: "credit"
                 }
             ]
+        });
+        $('#logout').click(function(){
+            Swal.fire({
+                title: 'คำเตือน',
+                text: "แน่ใจว่าคุณจะออกจากระบบ ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ใช่'
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire(
+                        'สำเร็จ',
+                        'คุณได้ออกจากระบบแล้ว',
+                        'success'
+                    );
+                    $('#logout-form').submit();
+                }
+            })
         });
     });
 });

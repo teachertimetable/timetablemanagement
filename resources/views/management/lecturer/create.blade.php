@@ -1,7 +1,7 @@
 @extends('layouts.timetable_layout')
 
 @section('content')
-    <div class="py-2 container">
+    <div class="py-2 container jumbotron shadow">
         <form method="post" id="subject_add">
             {{ csrf_field() }}
             <center><h3>เพิ่มอาจารย์</h3> </center><br><br>

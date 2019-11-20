@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('.layouts.timetable_layout')
 
 @section('content')
 <div class="container">

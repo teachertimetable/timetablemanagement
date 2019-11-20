@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container py-3">
-        <h2 style="text-align:center">รายวิชา</h2>
-        <div class="table-responsive">
+        <div class="table-responsive jumbotron shadow">
+            <h2 style="text-align:center">รายวิชา</h2>
             <table class="table table-bordered" id="subjectView">
                 <thead>
                 <tr>

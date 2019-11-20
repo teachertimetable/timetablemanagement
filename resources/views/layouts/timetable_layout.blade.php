@@ -91,11 +91,15 @@
                                     <a class="dropdown-item" id="logout">ออกจากระบบ</a>
                                 </div>
                             </div>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         @endguest
                 </span>
             </div>
         </nav>
-        <main class="py-4">
+        <main class="py-4 parallax">
             @yield('content')
         </main>
     </div>

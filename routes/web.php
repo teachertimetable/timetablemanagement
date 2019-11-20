@@ -21,6 +21,7 @@ Auth::routes();
 
     /* HOME CONTROLLER */
     Route::get('/','HomeController@index');
+    /* HOME CONTROLLER */
 
     /* TIMETABLE CONTROLLER */
     Route::get('/management/timetable','TimeTableController@index')->name('timetable');
