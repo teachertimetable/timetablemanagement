@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeSubjectTableStructure2 extends Migration
+class EditCreditType extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class ChangeSubjectTableStructure2 extends Migration
     public function up()
     {
         Schema::table('subject', function (Blueprint $table) {
-            $table->string('credit')->nullable ();
+            $table->dropColumn('credit');
+            $table->dropColumn('teacher_id');
             $table->dropColumn('subject_type_id');
         });
     }

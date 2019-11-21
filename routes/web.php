@@ -38,6 +38,10 @@ Auth::routes();
     Route::resource('/management/subjectlist','RESTController\SubjectREST');
     /* LECTURER CONTROLLER */
 
+    /* TeacherBurden CONTROLLER */
+    Route::get('/management/teacherburden','TeacherBurdenController@index')->name('teacherburden');
+    /* TeacherBurden CONTROLLER */
+
 /* TIMETABLE MANAGEMENT ROUTER */
 
 /* ¯\_(ツ)_/¯ */
