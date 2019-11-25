@@ -11,7 +11,7 @@ class TeacherInfo extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'teacher_id','teacher_name','teacher_pic_src','teacher_email','teacher_tel'
+        'teacher_id','teacher_name','teacher_pic_src','teacher_email','teacher_tel','teacher_tel_fax','teacher_minor','position'
     ];
 
     public function teach(){

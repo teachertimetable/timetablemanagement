@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\TeacherInfo;
 
 class TeacherInfoSeeder extends Seeder
 {
@@ -11,10 +12,33 @@ class TeacherInfoSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\TeacherInfo::class,25)
-            ->create()
-            ->each(function($teacher){
-            $teacher->post()->save(factory(App\Models\TeacherInfo::class)->make());
-        });
+        TeacherInfo::truncate();
+        $seedData = $this->seedFromCSV("database/csv/TeacherInfo.csv", ',');
+        TeacherInfo::insert($seedData);
+    }
+
+    private function seedFromCSV($filename, $delimitor)
+    {
+        if(!file_exists($filename) || !is_readable($filename))
+        {
+            return FALSE;
+        }
+
+        $header = NULL;
+        $data = array();
+        if(($handle = fopen($filename, 'r')) !== FALSE)
+        {
+            while(($row = fgetcsv($handle, $delimitor)) !== FALSE)
+            {
+                if(!$header) {
+                    $header = $row;
+                } else {
+                    $data[] = array_combine(str_replace('﻿t','t',$header), $row);
+                }
+            }
+            fclose($handle);
+        }
+
+        return $data;
     }
 }
