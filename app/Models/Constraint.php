@@ -10,7 +10,11 @@ class Constraint extends Model
     protected $table = "constraint_teacher";
     protected $primaryKey = "id";
     protected $fillable = [
-        'constraint_title' , 'teacher_id' , 'subject_id' , 'weekday' , 'start_time' , 'end_time'
+        'constraint_title' , 'teacher_id' , 'weekday' , 'start_time' , 'end_time'
     ];
 
+    public function have()
+    {
+        return $this->hasOne ( 'App\Models\Subject' );
+    }
 }
