@@ -40,6 +40,7 @@ Auth::routes();
 
     /* TeacherBurden CONTROLLER */
     Route::get('/management/teacherburden','TeacherBurdenController@index')->name('teacherburden');
+Route::post ( '/management/teacherburden' , 'TeacherBurdenController@saveBurden' )->name ( 'saveTeacherBurden' );
     /* TeacherBurden CONTROLLER */
 
 /* TIMETABLE MANAGEMENT ROUTER */
