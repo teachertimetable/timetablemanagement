@@ -5,7 +5,7 @@
         <div class="table-responsive jumbotron shadow">
             <h2 style="text-align:center">ภาระงานของอาจารย์</h2>
             กรอกภาระการสอน
-            <input type="text" class="form-control" placeholder="ภาระการสอน" name="username"><br>
+            <input type="text" class="form-control" placeholder="ภาระการสอน" name="constraint_title"><br>
             รหัสวิชา
             <input type="text" class="form-control" placeholder="รหัสวิชา" name="username"><br>
             ชื่อวิชา

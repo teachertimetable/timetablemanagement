@@ -28,7 +28,9 @@ $(function() {
                     name: "teacher_tel"
                 },
                 {
-                    data: "teacher_pic_src",
+                    data: function (img) {
+                        return '<img width="100px" class="mx-auto d-block" src="' + img.teacher_pic_src + '"/>';
+                    },
                     name: "teacher_pic_src"
                 }
             ]
