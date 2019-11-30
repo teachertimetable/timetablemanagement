@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcomesite')->with('title','ยินดีต้อนรับ');
+        return view ( 'welcomesite' );
     }
 }
