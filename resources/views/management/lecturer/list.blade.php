@@ -5,7 +5,7 @@
         <div class="table-responsive jumbotron shadow">
             @foreach($teacher_info as $teacher)
             <h2 style="text-align:center">ข้อมูลอาจารย์</h2><br><br>
-            <img width="100px" class="mx-auto d-block" src="{{ $teacher->teacher_pic_src }}"/><br>
+            <img width="200px" class="mx-auto d-block img-thumbnail" src="{{ $teacher->teacher_pic_src }}"/><br>
             <div class="row">
               <div class="col-md-2">
                   รหัสอาจารย์ :
