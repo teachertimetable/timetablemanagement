@@ -5,7 +5,6 @@
     <div class="parallax"><br>
         <div class="loginbg" data-aos="zoom-in" data-aos-duration="300">
             <form id="login" method="post">
-                {{ csrf_token () }}
                 <div class="row">
                     <div class="col-md-6" align="center">
                         <img src="img/profile.jpg" width="80%">

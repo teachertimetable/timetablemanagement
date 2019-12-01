@@ -30,18 +30,19 @@ Auth::routes();
     /* TIMETABLE CONTROLLER */
 
     /* SUBJECT CONTROLLER */
-    Route::get('/management/subjectlist','SubjectController@index')->name('subject');
-    /* SUBJECT CONTROLLER */
+Route::get ( '/management/subjectlist' , 'SubjectController@index' )->name ( 'subject' );
+Route::resource ( '/management/subjectlist' , 'RESTController\SubjectREST' );
+/* SUBJECT CONTROLLER */
 
-    /* LECTURER CONTROLLER */
-    Route::resource('/management/lecturerlist','RESTController\LecturerREST');
-    Route::resource('/management/subjectlist','RESTController\SubjectREST');
-    Route::get('/management/lecturerlist/view/{id}','LecturerController@list');
-    /* LECTURER CONTROLLER */
+/* LECTURER CONTROLLER */
+Route::resource ( '/management/lecturerlist' , 'RESTController\LecturerREST' );
+Route::get ( '/management/lecturerlist/view/{id}' , 'LecturerController@list' );
+/* LECTURER CONTROLLER */
 
-    /* TeacherBurden CONTROLLER */
-    Route::get('/management/teacherburden','TeacherBurdenController@index')->name('teacherburden');
-Route::post ( '/management/teacherburden' , 'TeacherBurdenController@saveBurden' )->name ( 'saveTeacherBurden' );
+/* TeacherBurden CONTROLLER */
+Route::resource ( '/management/teacherburden' , 'RESTController\TeacherBurdenREST' );
+Route::get ( '/management/teacherburden/action/addBurden' , 'TeacherBurdenController@index' )->name ( 'teacherBurdenAdd' );
+Route::post ( '/management/teacherburden/action/addBurden' , 'TeacherBurdenController@saveBurden' )->name ( 'saveTeacherBurden' );
     /* TeacherBurden CONTROLLER */
 
 /* TIMETABLE MANAGEMENT ROUTER */

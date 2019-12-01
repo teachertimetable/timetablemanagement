@@ -8,7 +8,7 @@ use App\Models\Constraint;
 class TeacherBurdenController extends Controller
 {
     public function index(){
-        return view('management.teacherburden.teacherburdenlist')->with('title','ภาระงานของอาจารย์');
+        return view ( 'management.teacherburden.index' )->with ( 'title' , 'ภาระงานของอาจารย์' );
     }
 
     public function saveBurden(Request $request)
@@ -23,6 +23,6 @@ class TeacherBurdenController extends Controller
             "start_time" => $st ,
             "end_time" => $ed
         ] );
-        return view ( 'management.teacherburden.index' )->with ( 'title' , 'ภาระงานของอาจารย์' );
+        return redirect ( route ( 'teacherburden.index' ) );
     }
 }

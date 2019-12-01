@@ -80,22 +80,24 @@
                         <a class="nav-link" href="{{ route('lecturerlist.index') }}">รายชื่ออาจารย์</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('teacherburden') }}">ภาระงานของอาจารย์</a>
+                        <a class="nav-link" href="{{ route('teacherburden.index') }}">ภาระงานของอาจารย์</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
                         @guest
-                            <div>เข้าสู่ระบบ</div>
-                        @else
-                            <div class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">สวัสดี คุณ {{ Auth::user()->name }} {{ Auth::user()->surname }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">เข้าสู่ระบบ</a>
+                    @else
+                        <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">สวัสดี คุณ {{ Auth::user()->name }} {{ Auth::user()->surname }}</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" id="editinfo">แก้ไขข้อมูลส่วนตัว</a>
                                     <a class="dropdown-item" id="logout">ออกจากระบบ</a>
                                 </div>
                             </div>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         @endguest

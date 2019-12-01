@@ -1,9 +1,10 @@
 const Swal = require('sweetalert2');
+const moment = require('moment');
 require('datatables.net-bs4');
 
-/* DATATABLES (/management/lecturerlist) (/management/subjectlist)*/
 $(function() {
     $(document).ready(function () {
+        /* DATATABLES (/management/lecturerlist) (/management/subjectlist)*/
         $('#lecturerView').DataTable({
             processing: true,
             serverSide: true,
@@ -65,10 +66,10 @@ $(function() {
                 {
                     data: function(d){
                         let subcredit = "";
-                        let sumiresubcredit = d.credit.substring(2,7);
-                        if(sumiresubcredit === ''){
+                        let sumiresubcredit = d.credit.substring(2, 7);
+                        if (sumiresubcredit === '') {
                             subcredit = "ไม่มีการเรียนการสอน";
-                        }else{
+                        } else {
                             subcredit = sumiresubcredit;
                         }
                         return subcredit;
@@ -77,7 +78,33 @@ $(function() {
                 }
             ]
         });
-        $('#logout').click(function(){
+        $('#burdenView').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "/management/teacherburden",
+            },
+            columns: [
+                {
+                    data: "constraints_title",
+                    name: "constraints_title"
+                },
+                {
+                    data: "weekday",
+                    name: "weekday"
+                },
+                {
+                    data: "start_time",
+                    name: "start_time"
+                },
+                {
+                    data: "end_time",
+                    name: "end_time"
+                }
+            ]
+        });
+        /* DATATABLES (/management/lecturerlist) (/management/subjectlist) (/management/teacherburden)*/
+        $('#logout').click(function () {
             Swal.fire({
                 title: 'คำเตือน',
                 text: "แน่ใจว่าคุณจะออกจากระบบ ?",
@@ -99,4 +126,3 @@ $(function() {
         });
     });
 });
-/* DATATABLES (/management/lecturerlist) (/management/subjectlist)*/
