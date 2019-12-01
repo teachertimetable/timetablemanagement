@@ -32,6 +32,12 @@ $(function() {
                         return '<img width="100px" class="mx-auto d-block" src="' + img.teacher_pic_src + '"/>';
                     },
                     name: "teacher_pic_src"
+                },
+                {
+                    data: function (tid){
+                        return '<a class="btn btn-info" href="/management/lecturerlist/view/'+tid.teacher_id+'">ดูข้อมูลอาจารย์</a>';
+                    },
+                    name: "teacher_id"
                 }
             ]
         });

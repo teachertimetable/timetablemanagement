@@ -36,6 +36,7 @@ Auth::routes();
     /* LECTURER CONTROLLER */
     Route::resource('/management/lecturerlist','RESTController\LecturerREST');
     Route::resource('/management/subjectlist','RESTController\SubjectREST');
+    Route::get('/management/lecturerlist/view/{id}','LecturerController@list');
     /* LECTURER CONTROLLER */
 
     /* TeacherBurden CONTROLLER */
