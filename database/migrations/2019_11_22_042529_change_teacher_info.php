@@ -14,7 +14,7 @@ class ChangeTeacherInfo extends Migration
     public function up()
     {
         Schema::table('teacher_info', function (Blueprint $table) {
-            $table->json('minor');
+            $table->dropColumn('minor');
             $table->string('position');
             $table->string('teacher_tel_fax');
         });

@@ -12,8 +12,7 @@ class SubjectREST extends Controller
 {
     public function index(Request $request){
         if($request->ajax()) {
-            Redis::set ( 'Subject' , Subject::query ()->get () );
-            $data = json_decode ( Redis::get ( 'Subject' ) );
+            $data = Subject::query ()->get ();
             return DataTables::of ( $data )
                 ->make ( true );
         }
