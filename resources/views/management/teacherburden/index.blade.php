@@ -5,8 +5,8 @@
         <div class="table-responsive jumbotron shadow">
             <form class="form-group" method="POST" action="{{ route('saveTeacherBurden') }}">
                 {{ @csrf_field () }}
-                <h2 style="text-align:center">ภาระงานของอาจารย์</h2>
-                กรอกภาระการสอน
+                <h2 style="text-align:center">เงื่อนไขของอาจารย์</h2>
+                กรอกเงื่อนไขการสอน
                 <input type="text" class="form-control" placeholder="ภาระการสอน" name="constraint_title"><br>
                 <div class="row">
                     <div class="col-md-6">

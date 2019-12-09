@@ -12,7 +12,8 @@ class LecturerREST extends Controller
 {
     public function index(Request $request){
         if($request->ajax()) {
-            $data = TeacherInfo::query ()->get ();
+            Redis::set ( 'TeacherInfo' , TeacherInfo::query ()->get () );
+            $data = json_decode ( Redis::get ( 'TeacherInfo' ) );
             return DataTables::of ( $data )
                 ->make ( true );
         }

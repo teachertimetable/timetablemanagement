@@ -60,7 +60,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">ระบบจัดตารางสอนสำหรับอาจารย์</a>
+            <img width="50px" src="{{asset('img/logo.jpg')}}"/><a class="navbar-brand" href="#">ระบบจัดตารางสอนสำหรับอาจารย์</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -80,7 +80,7 @@
                         <a class="nav-link" href="{{ route('lecturerlist.index') }}">รายชื่ออาจารย์</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('teacherburden.index') }}">ภาระงานของอาจารย์</a>
+                        <a class="nav-link" href="{{ route('teacherburden.index') }}">เงื่อนไขของอาจารย์</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
