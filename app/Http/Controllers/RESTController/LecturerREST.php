@@ -6,14 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\TeacherInfo;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redis;
 
 class LecturerREST extends Controller
 {
     public function index(Request $request){
         if($request->ajax()) {
-            Redis::set ( 'TeacherInfo' , TeacherInfo::query ()->get () );
-            $data = json_decode ( Redis::get ( 'TeacherInfo' ) );
+            $data = TeacherInfo::query ()->get ();
             return DataTables::of ( $data )
                 ->make ( true );
         }
