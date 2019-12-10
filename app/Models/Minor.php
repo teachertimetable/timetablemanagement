@@ -10,6 +10,7 @@ class Minor extends Model
     protected $primaryKey = "minor_id";
     public $incrementing = false;
     protected $fillable = [
-        'minor_id','minor_info'
+        'minor_id' , 'minor_info'
     ];
+    protected $keyType = 'string';
 }

@@ -12,9 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call ( [
-            MinorSeeder::class,
-            SubjectSeeder::class,
-            TeacherInfoSeeder::class
+            MinorSeeder::class ,
+            SubjectSeeder::class ,
+            TeacherInfoSeeder::class ,
+            TeachBySeeder::class
         ]);
     }
 }

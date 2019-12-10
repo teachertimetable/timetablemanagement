@@ -19,17 +19,17 @@ Auth::routes();
 
 /* TIMETABLE MANAGEMENT ROUTER */
 
-    /* HOME CONTROLLER */
-    Route::get('/','HomeController@index');
-    /* HOME CONTROLLER */
+/* HOME CONTROLLER */
+Route::get ( '/' , 'HomeController@index' );
+/* HOME CONTROLLER */
 
-    /* TIMETABLE CONTROLLER */
-    Route::get('/management/timetable','TimeTableController@index')->name('timetable');
-    Route::get('/management/timetable/normal','TimeTableController@normal_view')->name('timetable_normal');
-    Route::get('/management/timetable/modular','TimeTableController@modular_view')->name('timetable_modular');
-    /* TIMETABLE CONTROLLER */
+/* TIMETABLE CONTROLLER */
+Route::get ( '/management/timetable' , 'TimeTableController@index' )->name ( 'timetable' );
+Route::resource ( '/management/timetable/normal' , 'RESTController\TimeTableREST' );
+Route::get ( '/management/timetable/modular' , 'TimeTableController@showModular' )->name ( 'timetable_modular' );
+/* TIMETABLE CONTROLLER */
 
-    /* SUBJECT CONTROLLER */
+/* SUBJECT CONTROLLER */
 Route::get ( '/management/subjectlist' , 'SubjectController@index' )->name ( 'subject' );
 Route::resource ( '/management/subjectlist' , 'RESTController\SubjectREST' );
 /* SUBJECT CONTROLLER */
@@ -43,8 +43,13 @@ Route::get ( '/management/lecturerlist/view/{id}' , 'LecturerController@list' );
 Route::resource ( '/management/teacherburden' , 'RESTController\TeacherBurdenREST' );
 Route::get ( '/management/teacherburden/action/addBurden' , 'TeacherBurdenController@index' )->name ( 'teacherBurdenAdd' );
 Route::post ( '/management/teacherburden/action/addBurden' , 'TeacherBurdenController@saveBurden' )->name ( 'saveTeacherBurden' );
-    /* TeacherBurden CONTROLLER */
+/* TeacherBurden CONTROLLER */
 
 /* TIMETABLE MANAGEMENT ROUTER */
 
+/* DANGEROUS FIELD */
+Route::get ( '/management/teachby' , 'TeachByController@index' );
+Route::get ( '/management/gettime' , 'TimeTableController@shaping' );
+Route::get ( '/management/gettime/showM' , 'TimeTableController@minimalShaping' );
+/* DANGEROUS FIELD */
 /* ¯\_(ツ)_/¯ */

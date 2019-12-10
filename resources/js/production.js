@@ -124,5 +124,50 @@ $(function() {
                 }
             })
         });
+
+        /** TIMETABLE SUBJECT **/
+        $('#esTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "/management/timetable/normal",
+                data: {
+                    "category_id": "CTG011"
+                }
+            },
+            "lengthMenu": [[3, -1], [3, "All"]],
+            columns: [
+                {
+                    data: "subject_id",
+                    name: "subject_id"
+                },
+                {
+                    data: "subject_name",
+                    name: "subject_name"
+                }
+            ]
+        });
+
+        $('#bidaTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "/management/timetable/normal",
+                data: {
+                    "category_id": "CTG013"
+                }
+            },
+            "lengthMenu": [[3, -1], [3, "All"]],
+            columns: [
+                {
+                    data: "subject_id",
+                    name: "subject_id"
+                },
+                {
+                    data: "subject_name",
+                    name: "subject_name"
+                }
+            ]
+        });
     });
 });

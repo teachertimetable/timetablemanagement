@@ -61,15 +61,17 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <img width="50px" src="{{asset('img/logo.jpg')}}"/><a class="navbar-brand" href="#">ระบบจัดตารางสอนสำหรับอาจารย์</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ตารางสอน</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true" aria-expanded="false">ตารางสอน</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('timetable_normal') }}">แบบปกติ</a>
+                            <a class="dropdown-item" href="{{ route('normal.index') }}">แบบปกติ</a>
                             <a class="dropdown-item" href="{{ route('timetable_modular') }}">แบบโมดูล</a>
                         </div>
                     </li>

@@ -15,6 +15,6 @@ class Constraint extends Model
 
     public function have()
     {
-        return $this->hasOne ( 'App\Models\TeacherInfo' , 'teacher_id' );
+        return $this->belongsTo ( 'App\Models\TeacherInfo' , 'teacher_id' );
     }
 }

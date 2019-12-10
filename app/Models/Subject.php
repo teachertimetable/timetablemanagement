@@ -9,12 +9,19 @@ class Subject extends Model
     protected $table = 'subject';
     protected $primaryKey = 'subject_id';
     public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
-        'subject_id','subject_name','credit'
+        'subject_id' , 'subject_name' , 'credit'
     ];
 
-    public function have(){
-        return $this->hasOne ('App\Models\Category');
+    public function have()
+    {
+        return $this->hasOne ( 'App\Models\Category' );
+    }
+
+    public function teachBy()
+    {
+        return $this->hasMany ( 'App\Models\TeachBy' , 'subject_id' );
     }
 }
