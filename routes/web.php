@@ -20,7 +20,7 @@ Auth::routes();
 /* TIMETABLE MANAGEMENT ROUTER */
 
     /* HOME CONTROLLER */
-    Route::get('/','HomeController@index');
+    Route::get('/','HomeController@index')->name('home');
     /* HOME CONTROLLER */
 
     /* TIMETABLE CONTROLLER */

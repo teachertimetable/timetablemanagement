@@ -3,14 +3,23 @@
 @section('content')
     <div class="container py-3">
         <div class="tablemodulebg">
-            <h1>ตารางแนะนำ</h1>
+            <center><h1>ตารางแนะนำ</h1><br>
 
-            <div>
-                <a href="#" class="btn btn-primary">ปี1</a>
-                <a href="#" class="btn btn-primary">ปี2</a>
-                <a href="#" class="btn btn-primary">ปี3</a>
-                <a href="#" class="btn btn-primary">ปี4</a>
+            <div class="row">
+                <div class="col-sm-3 ">
+                <a href="#" class="btn btn-primary btn-block">ปี1</a><br>
+                </div>
+                <div class="col-sm-3">
+                <a href="#" class="btn btn-primary btn-block">ปี2</a><br>
+                </div>
+                <div class="col-sm-3">
+                <a href="#" class="btn btn-primary btn-block">ปี3</a><br>
+                </div>
+                <div class="col-sm-3">
+                <a href="#" class="btn btn-primary btn-block">ปี4</a><br>
+                </div>
             </div>
+            </center>
             <br>
 
             <div class="row">
