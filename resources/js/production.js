@@ -124,6 +124,14 @@ $(function() {
                 }
             })
         });
+        $('#insert').click(function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'บันทึกสำเร็จ',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        });
 
         /** TIMETABLE SUBJECT **/
         $('#esTable').DataTable({
