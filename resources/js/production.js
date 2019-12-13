@@ -102,13 +102,75 @@ $(function() {
                     name: "end_time"
                 },
                 {
-                    data: function (tid){
-                        return '<a class="btn btn-danger" href="/management/teacherburden/action/deleteBurden'+tid.id+'">ลบ</a>';
+                    data: function (tid) {
+                        return '<button class="btn btn-danger" id="deleteBurden" aria-value="' + tid.id + '">ลบ</button>';
                     },
                     name: "id"
                 }
             ]
         });
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        $('#burdenView tbody').on('click', 'button', function (e) {
+            if (e.target.attributes[1].value === "deleteBurden") {
+                // console.log(e.target.attributes[2].value);
+                swalWithBootstrapButtons.fire({
+                    title: 'แน่ใจว่าคุณจะลบสิ่งนี้ ?',
+                    text: "การลบครั้งนี้ไม่สามารถย้อนกลับได้ กรุณาคิดก่อนการลบ!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'ยืนยัน',
+                    cancelButtonText: 'ยกเลิก',
+                    reverseButtons: false
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: "/management/teacherburden/action/deleteBurden",
+                            type: "POST",
+                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                            data: {
+                                id: e.target.attributes[2].value
+                            },
+                            success: function (result) {
+                                if (result.status === "delete_completed") {
+                                    swalWithBootstrapButtons.fire(
+                                        'ลบสำเร็จ',
+                                        '⚡',
+                                        'success'
+                                    )
+                                    window.location.reload();
+                                } else {
+                                    swalWithBootstrapButtons.fire(
+                                        'ลบไม่สำเร็จ',
+                                        '🚫',
+                                        'error'
+                                    )
+                                }
+                            }
+                        });
+                    } else if (
+                        /* Read more about handling dismissals below */
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire(
+                            'คุณได้ยกเลิกไปแล้ว',
+                            '❌❌',
+                            'error'
+                        )
+                    }
+                })
+            } else {
+
+            }
+        });
+
         /* DATATABLES (/management/lecturerlist) (/management/subjectlist) (/management/teacherburden)*/
         $('#logout').click(function () {
             Swal.fire({
