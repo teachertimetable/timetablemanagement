@@ -123,6 +123,7 @@ class TimeTableController extends Controller
 
                 } else {
                     $wk[ "weekday" ][] = $events[ $i ][ "weekday" ];
+                    $wk[ "lecturer" ][] = $events[ $i ][ "teacher_id" ];
                 }
             }
             $i++;
@@ -152,17 +153,49 @@ class TimeTableController extends Controller
         $end = Carbon::instance ( new DateTime( $schedule[ 'end' ] ) );
 
         $i = 0;
+        $wkd = [];
+        $ddm = "";
+
         foreach (new DatePeriod( $start , $minInterval , $end ) as $slot) {
+            $info = [];
+
             $to = $slot->copy ()->add ( $reqInterval );
             $jq[] = $this->slotAvailable ( $slot , $to , $events );
             if ($jq[ $i ][ "weekday" ][ 0 ] === "no") {
-                $avail[ "time" ][] = array("status" => "avaliable" , "start" => $slot->toDateTimeString () , "end" => $to->toDateTimeString () , "weekday" => $jq[ $i ][ "weekday" ]);
-            } else {
+                $weekday = ['mon' , 'tue' , 'wed' , 'thu' , 'fri' , 'sat' , 'sun'];
 
-                $avail[ "busy" ][] = array("status" => "busy" , "start" => $slot->toDateTimeString () , "end" => $to->toDateTimeString () , "weekday" => array_slice ( $jq[ $i ][ "weekday" ] , 0 , -1 ));
+//                $teacherget = TeacherInfo::whereNotIn('teacher_id',$info)->get();
+//                $teacherid = function () use(&$teacherget){
+//                    $tid = [];
+//                    foreach($teacherget as $tc){
+//                        $tid[] = $tc['teacher_id'];
+//                    }
+//                    return $tid;
+//                };
+//                $filter = array_filter($jq[$i]["weekday"],
+//                    function($val) use ($weekday){
+//                        return in_array($val,$weekday);
+//                    },
+//                    ARRAY_FILTER_USE_KEY
+//                );
+//                IDEOLOGY array_unique(array_merge($wkd[0],$wkd[1],$wkd[2]),SORT_STRING)
+
+                $avail[ "time" ][] = array("status" => "avaliable" , "start" => $slot->toDateTimeString () , "end" => $to->toDateTimeString () , "weekday" => ($ddm) ?? "");
+            } else {
+                $avail[ "busy" ][] = array("status" => "busy" , "start" => $slot->toDateTimeString () , "end" => $to->toDateTimeString () , "weekday" => array_slice ( $jq[ $i ][ "weekday" ] , 0 , -1 ) , "teacher" => $jq[ $i ][ "lecturer" ]);
+                $info[] = $jq[ $i ][ "lecturer" ];
+                $wkd[] = $jq[ $i ][ "weekday" ];
             }
             $i++;
         }
+//        $weekday = ['mon' , 'tue' , 'wed' , 'thu' , 'fri' , 'sat' , 'sun'];
+//        $filter = array_filter(array_unique(array_merge($wkd[0],$wkd[1],$wkd[2]),SORT_STRING),
+//            function($val) use ($weekday){
+//                return in_array($val,$weekday);
+//            },
+//            ARRAY_FILTER_USE_KEY
+//        );
+
         return $avail;
     }
 

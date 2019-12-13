@@ -30,4 +30,14 @@ class TeacherBurdenController extends Controller
         ] );
         return redirect ( route ( 'teacherburden.index' ) );
     }
+
+    public function deleteBurden(Request $request)
+    {
+        $burden = Constraint::find ( $request->id );
+        if ($burden) {
+            $delete = Constraint::destroy ( $request->id );
+
+            return array("status" => "deleted");
+        }
+    }
 }
