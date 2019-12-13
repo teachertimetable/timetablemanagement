@@ -29,7 +29,7 @@ Route::resource ( '/management/timetable/normal' , 'RESTController\TimeTableREST
 Route::get ( '/management/timetable/modular' , 'TimeTableController@showModular' )->name ( 'timetable_modular' );
 /* TIMETABLE CONTROLLER */
 
-    /* SUBJECT CONTROLLER */
+/* SUBJECT CONTROLLER */
 Route::get ( '/management/subjectlist' , 'SubjectController@index' )->name ( 'subject' );
 Route::resource ( '/management/subjectlist' , 'RESTController\SubjectREST' );
 /* SUBJECT CONTROLLER */
@@ -43,6 +43,7 @@ Route::get ( '/management/lecturerlist/view/{id}' , 'LecturerController@list' );
 Route::resource ( '/management/teacherburden' , 'RESTController\TeacherBurdenREST' );
 Route::get ( '/management/teacherburden/action/addBurden' , 'TeacherBurdenController@index' )->name ( 'teacherBurdenAdd' );
 Route::post ( '/management/teacherburden/action/addBurden' , 'TeacherBurdenController@saveBurden' )->name ( 'saveTeacherBurden' );
+Route::post ( '/management/teacherburden/action/deleteBurden' , 'TeacherBurdenController@deleteBurden' )->name ( 'deleteTeacherBurden' );
 /* TeacherBurden CONTROLLER */
 
 /* TIMETABLE MANAGEMENT ROUTER */

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TeacherInfo;
 use Illuminate\Http\Request;
 use App\Models\Constraint;
-use DateTime;
 
 class TeacherBurdenController extends Controller
 {
@@ -16,28 +14,23 @@ class TeacherBurdenController extends Controller
     public function saveBurden(Request $request)
     {
         $r = explode ( "-" , $request->time );
-        $st = new DateTime( $r[ 0 ] );
-        $ed = new DateTime( $r[ 1 ] );
-        $duration = "1";
-        $teacher = TeacherInfo::orderBy ( 'teacher_name' )->get ( 'teacher_id' )->toArray ();
-        $randomkey = array_rand ( $teacher , 1 );
+        $st = $r[ 0 ];
+        $ed = $r[ 1 ];
         $con = Constraint::create ( [
             "constraints_title" => $request->constraint_title ,
-            "teacher_id" => $teacher[ $randomkey ][ "teacher_id" ] ,
+            "teacher_id" => '160044' ,
             "weekday" => $request->weekday ,
             "start_time" => $st ,
             "end_time" => $ed
         ] );
         return redirect ( route ( 'teacherburden.index' ) );
     }
+    public function deleteBurden(Request $request){
+        $burden = Constraint::find($request->id);
+        if($burden){
+            $delete = Constraint::destroy($request->id);
 
-    public function deleteBurden(Request $request)
-    {
-        $burden = Constraint::find ( $request->id );
-        if ($burden) {
-            $delete = Constraint::destroy ( $request->id );
-
-            return array("status" => "deleted");
+            return array("status"=>"deleted");
         }
     }
 }

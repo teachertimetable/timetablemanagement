@@ -100,6 +100,12 @@ $(function() {
                 {
                     data: "end_time",
                     name: "end_time"
+                },
+                {
+                    data: function (tid){
+                        return '<a class="btn btn-danger" href="/management/teacherburden/action/deleteBurden'+tid.id+'">ลบ</a>';
+                    },
+                    name: "id"
                 }
             ]
         });
@@ -131,51 +137,6 @@ $(function() {
                 showConfirmButton: false,
                 timer: 1500
             })
-        });
-
-        /** TIMETABLE SUBJECT **/
-        $('#esTable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: "/management/timetable/normal",
-                data: {
-                    "category_id": "CTG011"
-                }
-            },
-            "lengthMenu": [[3, -1], [3, "All"]],
-            columns: [
-                {
-                    data: "subject_id",
-                    name: "subject_id"
-                },
-                {
-                    data: "subject_name",
-                    name: "subject_name"
-                }
-            ]
-        });
-
-        $('#bidaTable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: "/management/timetable/normal",
-                data: {
-                    "category_id": "CTG013"
-                }
-            },
-            "lengthMenu": [[3, -1], [3, "All"]],
-            columns: [
-                {
-                    data: "subject_id",
-                    name: "subject_id"
-                },
-                {
-                    data: "subject_name",
-                    name: "subject_name"
-                }
-            ]
         });
     });
 });
