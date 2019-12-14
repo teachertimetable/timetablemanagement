@@ -75,8 +75,17 @@ $(function() {
                         return subcredit;
                     },
                     name: "credit"
+                },
+                {
+                    data: function (tid) {
+                        return '<button class="btn btn-info" id="viewTeacher" aria-value="' + tid.subject_id + '">ดูอาจารย์ผู้สอน</button>';
+                    },
+                    name: "subject_id"
                 }
             ]
+        });
+        $('#subjectView tbody').on('click', 'button', function (e) {
+            console.log(e.target);
         });
         $('#burdenView').DataTable({
             processing: true,
@@ -144,14 +153,21 @@ $(function() {
                                         'ลบสำเร็จ',
                                         '⚡',
                                         'success'
-                                    )
-                                    window.location.reload();
+                                    ).then((result) => {
+                                        if (result.value) {
+                                            window.location.reload()
+                                        }
+                                    })
                                 } else {
                                     swalWithBootstrapButtons.fire(
                                         'ลบไม่สำเร็จ',
                                         '🚫',
                                         'error'
-                                    )
+                                    ).then((result) => {
+                                        if (result.value) {
+                                            window.location.reload()
+                                        }
+                                    })
                                 }
                             }
                         });

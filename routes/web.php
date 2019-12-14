@@ -52,6 +52,5 @@ Route::post ( '/management/teacherburden/action/deleteBurden' , 'TeacherBurdenCo
 Route::get ( '/management/teachby' , 'TeachByController@index' );
 Route::get ( '/management/gettime' , 'TimeTableController@shaping' );
 Route::get ( '/management/gettime/showM' , 'TimeTableController@minimalShaping' );
-Route::get ( '/management/teacherburden/action/deleteBurden' , 'TeacherBurdenController@deleteBurden' );
 /* DANGEROUS FIELD */
 /* ¯\_(ツ)_/¯ */

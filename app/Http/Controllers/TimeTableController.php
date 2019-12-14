@@ -162,7 +162,6 @@ class TimeTableController extends Controller
             $to = $slot->copy ()->add ( $reqInterval );
             $jq[] = $this->slotAvailable ( $slot , $to , $events );
             if ($jq[ $i ][ "weekday" ][ 0 ] === "no") {
-                $weekday = ['mon' , 'tue' , 'wed' , 'thu' , 'fri' , 'sat' , 'sun'];
 
 //                $teacherget = TeacherInfo::whereNotIn('teacher_id',$info)->get();
 //                $teacherid = function () use(&$teacherget){

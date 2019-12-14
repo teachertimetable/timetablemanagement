@@ -19,9 +19,4 @@ class Subject extends Model
     {
         return $this->hasOne ( 'App\Models\Category' );
     }
-
-    public function teachBy()
-    {
-        return $this->hasMany ( 'App\Models\TeachBy' , 'subject_id' );
-    }
 }

@@ -30,7 +30,11 @@ class TeacherBurdenController extends Controller
         $burden = Constraint::find($request->id);
         if ($burden) {
             $delete = Constraint::destroy ( $request->id );
-            return response ( array("status" => "delete_completed") );
+            if ($delete === 1) {
+                return response ( array("status" => "delete_completed") );
+            } else {
+                return response ( array("status" => "delete_uncompleted") );
+            }
         } else {
             return response ( array("status" => "delete_uncompleted") );
         }
