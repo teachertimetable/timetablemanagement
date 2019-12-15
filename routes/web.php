@@ -32,6 +32,7 @@ Route::get ( '/management/timetable/modular' , 'TimeTableController@showModular'
 /* SUBJECT CONTROLLER */
 Route::get ( '/management/subjectlist' , 'SubjectController@index' )->name ( 'subject' );
 Route::resource ( '/management/subjectlist' , 'RESTController\SubjectREST' );
+Route::get ( '/management/subjectlist/view/{id}' , 'SubjectController@list' );
 /* SUBJECT CONTROLLER */
 
 /* LECTURER CONTROLLER */

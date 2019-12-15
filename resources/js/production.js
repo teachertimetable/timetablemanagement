@@ -36,7 +36,7 @@ $(function() {
                 },
                 {
                     data: function (tid){
-                        return '<a class="btn btn-info" href="/management/lecturerlist/view/'+tid.teacher_id+'">ดูข้อมูลอาจารย์</a>';
+                        return '<a class="btn btn-primary" href="/management/lecturerlist/view/'+tid.teacher_id+'">ดูข้อมูลอาจารย์</a>';
                     },
                     name: "teacher_id"
                 }
@@ -78,7 +78,7 @@ $(function() {
                 },
                 {
                     data: function (tid) {
-                        return '<button class="btn btn-info" id="viewTeacher" aria-value="' + tid.subject_id + '">ดูอาจารย์ผู้สอน</button>';
+                        return '<a class="btn btn-primary" href="/management/subjectlist/view/'+tid.subject_id+'">ดูข้อมูลอาจารย์</a>';
                     },
                     name: "subject_id"
                 }
