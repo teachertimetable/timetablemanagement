@@ -10,10 +10,19 @@ use App\Models\Constraint;
 
 class TeachByController extends Controller
 {
-    public function index()
+    public function viewWhoTeach(Request $request)
     {
-        $teach = Constraint::with ( 'have' )->get ();
-        return view ( 'test' )->with ( 'teachr' , $teach );
+        $e = \App\Models\TeachBy::with ( ['haveTeacher' , 'haveSubjectName'] )->where ( "subject_id" , $request->subject_id )->get ()->toArray ();
+        $col = [];
+        foreach ($e as $compilation) {
+            $col[] = array(
+                "subject_id" => $compilation[ 'have_subject_name' ][ 'subject_id' ] ,
+                "subject_name" => $compilation[ 'have_subject_name' ][ 'subject_name' ] ,
+                "teacher_id" => $compilation[ 'have_teacher' ][ 'teacher_id' ] ,
+                "teacher_name" => $compilation[ 'have_teacher' ][ 'teacher_name' ]
+            );
+        }
+        return response ( $col );
     }
 
 }

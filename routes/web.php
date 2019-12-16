@@ -50,7 +50,7 @@ Route::post ( '/management/teacherburden/action/deleteBurden' , 'TeacherBurdenCo
 /* TIMETABLE MANAGEMENT ROUTER */
 
 /* DANGEROUS FIELD */
-Route::get ( '/management/teachby' , 'TeachByController@index' );
+Route::get ( '/management/teachby/{subject_id}' , 'TeachByController@viewWhoTeach' );
 Route::get ( '/management/gettime' , 'TimeTableController@shaping' );
 Route::get ( '/management/gettime/showM' , 'TimeTableController@minimalShaping' );
 Route::get ( '/management/gettime/showTimeAvail' , 'TimeTableController@weekdayUnDuplicator' );

@@ -220,19 +220,23 @@ class TimeTableController extends Controller
     protected function weekdaySearcher()
     {
         $wk = $this->weekdayUnDuplicator ();
-        $set = ['morning' , 'afternoon' , 'evening'];
+        $sett = ['morning' , 'afternoon' , 'evening'];
+        $set = array(array('morning' => "08:00:00") , array('afternoon' => "13:00:00") , array('evening' => "17:00:00"));
+        $i = 0;
         foreach ($set as $item) {
             $p[] = array(
-                "weekday" => $wk[ $item ] ,
-                "lecturer_who_unavaliable" => (function () use (&$wk , &$item) {
+                "weekday" => $wk[ $sett[ $i ] ] ,
+                "lecturer_who_unavaliable" => (function () use (&$wk , &$item , &$sett , &$i) {
                     $teacher = [];
-                    foreach ($wk[ $item ][ "info" ] as $day) {
-                        $ct = Constraint::where ( "weekday" , $day )->get ( "teacher_id" )->toArray ();
+                    foreach ($wk[ $sett[ $i ] ][ "info" ] as $day) {
+                        $ct = Constraint::where ( "weekday" , $day )
+                            ->where ( "start_time" , $item[ $sett[ $i ] ] )
+                            ->get ( "teacher_id" )->toArray ();
                         $teacher[] = $ct;
                     }
                     return $teacher;
                 })());
-
+            $i++;
         }
         return $p;
     }

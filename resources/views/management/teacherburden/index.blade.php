@@ -20,20 +20,25 @@
                             <option value="sat">เสาร์</option>
                             <option value="sun">อาทิตย์</option>
                         </select>
-                    </div><br>
+                    </div>
+                    <br>
                     <div class="col-md-6">
                         ช่วงเวลา<br>
                         <div>
                             <label class="form-check-label">
-                                &emsp;<input type="radio" class="form-check-input" name="time" value="8:00-12:00">8:00-12:00
+                                &emsp;<input type="radio" class="form-check-input" name="time" value="09:00-12:00">
+                                9:00-12:00 (ช่วงเช้า)
                                 &emsp; &emsp;<input type="radio" class="form-check-input" name="time"
-                                                    value="13:00-16:00">13:00-16:00
+                                                    value="13:00-16:00">
+                                13:00-16:00 (ช่วงกลางวัน)
                                 &emsp; &emsp;<input type="radio" class="form-check-input" name="time"
-                                                    value="17:00-20:00">17:00-22:00
+                                                    value="17:00-20:00">
+                                17:00-20:00 (ช่วงเย็น)
                             </label>
                         </div>
                     </div>
-                </div><br>
+                </div>
+                <br>
                 <center><input type="submit" class="btn btn-primary btn-md" value="บันทึก" id="insert"/>
                     <a href="#" class="btn btn-danger btn-md" role="button"> ยืนยัน </a></center>
             </form>

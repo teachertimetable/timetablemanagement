@@ -36,7 +36,9 @@ Artisan::command ( 'flushconstraint' , function () {
 } )->describe ( 'Truncating Constraints on TimeTable' );
 
 Artisan::command ( 'viewteacher' , function () {
-    $e = \App\Models\TeachBy::with ( ['haveTeacher' , 'haveSubjectName'] )->get ()->toArray ();
+    $e = \App\Models\TeachBy::with ( ['haveTeacher' => function ($query) {
+        $query->where ( "teacher_id" , "155028" );
+    } , 'haveSubjectName'] )->get ()->toArray ();
     $col = [];
     foreach ($e as $compilation) {
         $col[] = array(
