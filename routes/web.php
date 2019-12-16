@@ -53,5 +53,7 @@ Route::post ( '/management/teacherburden/action/deleteBurden' , 'TeacherBurdenCo
 Route::get ( '/management/teachby' , 'TeachByController@index' );
 Route::get ( '/management/gettime' , 'TimeTableController@shaping' );
 Route::get ( '/management/gettime/showM' , 'TimeTableController@minimalShaping' );
+Route::get ( '/management/gettime/showTimeAvail' , 'TimeTableController@weekdayUnDuplicator' );
+Route::get ( '/management/gettime/showTimeWithLect' , 'TimeTableController@weekdaySearcher' );
 /* DANGEROUS FIELD */
 /* ¯\_(ツ)_/¯ */

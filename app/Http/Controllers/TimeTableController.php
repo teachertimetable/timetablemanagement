@@ -198,6 +198,45 @@ class TimeTableController extends Controller
         return $avail;
     }
 
+    protected function weekdayUnDuplicator()
+    {
+        $result_avail = $this->minimalShaping ();
+        $kp = [];
+        $i = 0;
+        foreach ($result_avail[ 'busy' ] as $action_listday) {
+            $t = new DateTime( $action_listday[ 'start' ] );
+            if (($t->format ( "H:i:s" )) === "09:00:00") {
+                $kp[ "morning" ][ "info" ] = array_values ( array_unique ( $action_listday[ 'weekday' ] , SORT_STRING ) );
+            } else if (($t->format ( "H:i:s" )) === "13:00:00") {
+                $kp[ "afternoon" ][ "info" ] = array_values ( array_unique ( $action_listday[ 'weekday' ] , SORT_STRING ) );
+            } else if (($t->format ( "H:i:s" )) === "17:00:00") {
+                $kp[ "evening" ][ "info" ] = array_values ( array_unique ( $action_listday[ 'weekday' ] , SORT_STRING ) );
+            }
+            $i++;
+        }
+        return $kp;
+    }
+
+    protected function weekdaySearcher()
+    {
+        $wk = $this->weekdayUnDuplicator ();
+        $set = ['morning' , 'afternoon' , 'evening'];
+        foreach ($set as $item) {
+            $p[] = array(
+                "weekday" => $wk[ $item ] ,
+                "lecturer_who_unavaliable" => (function () use (&$wk , &$item) {
+                    $teacher = [];
+                    foreach ($wk[ $item ][ "info" ] as $day) {
+                        $ct = Constraint::where ( "weekday" , $day )->get ( "teacher_id" )->toArray ();
+                        $teacher[] = $ct;
+                    }
+                    return $teacher;
+                })());
+
+        }
+        return $p;
+    }
+
     /** SLOTS ALGORITHM https://laracasts.com/discuss/channels/general-discussion/determining-available-time-slotsfor-scheduling */
 
     /** TIMETABLE ALGO */

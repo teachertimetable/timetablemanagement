@@ -4,11 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Constraint;
+use App\Models\TeacherInfo;
 
 class TeacherBurdenController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view ( 'management.teacherburden.index' )->with ( 'title' , 'ภาระงานของอาจารย์' );
+    }
+
+    private function randomLecturer()
+    {
+        $teacher = TeacherInfo::all ()->toArray ();
+        $teacheridarray = [];
+        foreach ($teacher as $tt) {
+            $teacheridarray[] = $tt[ 'teacher_id' ];
+        }
+        $rnd = array_rand ( $teacheridarray , 1 );
+        return $teacheridarray[ $rnd ];
     }
 
     public function saveBurden(Request $request)
@@ -18,7 +31,7 @@ class TeacherBurdenController extends Controller
         $ed = $r[ 1 ];
         $con = Constraint::create ( [
             "constraints_title" => $request->constraint_title ,
-            "teacher_id" => '160044' ,
+            "teacher_id" => $this->randomLecturer () ,
             "weekday" => $request->weekday ,
             "start_time" => $st ,
             "end_time" => $ed
