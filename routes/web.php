@@ -56,5 +56,7 @@ Route::get ( '/management/gettime/showM' , 'TimeTableController@minimalShaping' 
 Route::get ( '/management/gettime/showM/{teacher_id}' , 'TimeTableController@minimalShapingWithID' );
 Route::get ( '/management/gettime/showTimeAvail' , 'TimeTableController@weekdayUnDuplicator' );
 Route::get ( '/management/gettime/showTimeWithLect' , 'TimeTableController@weekdaySearcher' );
+Route::get ( '/management/countlectburden' , 'TimeTableController@countLectBurden' );
+Route::get ( '/management/timetable_automate' , 'TimeTableController@automata' );
 /* DANGEROUS FIELD */
 /* ¯\_(ツ)_/¯ */

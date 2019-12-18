@@ -11,6 +11,8 @@ use DateTime;
 use Carbon\CarbonInterval;
 use DatePeriod;
 use App\Models\Subject;
+use App\Models\TeachBy;
+use Illuminate\Support\Facades\DB;
 
 class TimeTableController extends Controller
 {
@@ -190,6 +192,85 @@ class TimeTableController extends Controller
 
     /* WITH ID */
 
+    protected function automata()
+    {
+        $ranking = $this->countLectBurden ();
+        $teacher = $this->weekdaySearcher ();
+        $i = 0;
+        $p = [];
+        $k = [];
+        $sett = ['morning' , 'afternoon' , 'evening'];
+        foreach ($ranking as $rank) {
+            if ($rank[ "rank" ] >= 2) {
+                $e = TeachBy::with ( ['haveTeacher' , 'haveSubjectName'] )->where ( "teacher_id" , $rank[ "teacher_id" ] )->get ()->toArray ();
+                foreach ($e as $info) {
+                    if (intval ( substr ( $info[ "have_subject_name" ][ "credit" ] , 0 , 1 ) ) >= 2) {
+                        if (substr ( $info[ "have_subject_name" ][ "credit" ] , 2 , 1 ) > substr ( $info[ "have_subject_name" ][ "credit" ] , 4 , 1 )) {
+//                            $p[] = $info["have_subject_name"]["subject_name"]." -> ".$info["have_subject_name"]["credit"]." -> ".$info["have_subject_name"]["subject_id"];
+                            foreach ($sett as $set) {
+                                if (array_key_exists ( $info[ "have_teacher" ][ "teacher_id" ] , $teacher[ $set ][ "lecturer_who_unavaliable" ][ "teacher" ] )) {
+                                    $p[ $info[ "have_teacher" ][ "teacher_id" ] ][] = $teacher[ $set ][ "lecturer_who_unavaliable" ][ "teacher" ][ $info[ "have_teacher" ][ "teacher_id" ] ];
+                                    $k[] = (function () use (&$p , &$info) {
+                                        $i = 0;
+                                        $v = 0;
+                                        $m = [];
+                                        $timerange = [];
+                                        $dff = 0;
+                                        for ($i = 0; $i < count ( $p[ $info[ "have_teacher" ][ "teacher_id" ] ][ 0 ][ "time" ] ); $i++) {
+                                            if ($p[ $info[ "have_teacher" ][ "teacher_id" ] ][ 0 ][ "time" ][ $i ][ "status" ] === "avaliable") {
+                                                $start = Carbon::instance ( new DateTime( $p[ $info[ "have_teacher" ][ "teacher_id" ] ][ 0 ][ "time" ][ $i ][ "start" ] ) );
+                                                $end = Carbon::instance ( new DateTime( $p[ $info[ "have_teacher" ][ "teacher_id" ] ][ 0 ][ "time" ][ $i ][ "end" ] ) );
+                                                $dff += ($end->diff ( $start ))->h;
+//                                                if($dff % substr ( $info[ "have_subject_name" ][ "credit" ] , 2 , 1 ) == 0){
+//                                                    $m[$info[ "have_subject_name" ][ "subject_id" ]][] = $p[ $info[ "have_teacher" ][ "teacher_id" ] ][ 0 ][ "time" ][ $i ];
+//                                                }
+                                                array_push ( $timerange , $dff );
+                                                $m[ $info[ "have_subject_name" ][ "subject_id" ] ][] = $p[ $info[ "have_teacher" ][ "teacher_id" ] ][ 0 ][ "time" ][ $i ];
+                                            }
+                                        }
+                                        foreach ($timerange as $time) {
+                                            if ($time % substr ( $info[ "have_subject_name" ][ "credit" ] , 2 , 1 ) == 0 || $time === 1) {
+                                                $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time ][ "marked" ] = "YES";
+                                            } else {
+                                                if (!array_key_exists ( "marked" , $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time - 1 ] )) {
+                                                    $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time ][ "marked" ] = "PROBABLY_YES";
+                                                } else {
+
+                                                }
+                                            }
+                                        }
+                                        return $m;
+                                    })();
+                                }
+                            }
+
+                        } else {
+
+                        }
+                    }
+                }
+            } else {
+
+            }
+        }
+        return $k;
+    }
+
+    protected function countLectBurden()
+    {
+        $rank = [];
+        $item = 0;
+        $count = Constraint::select ( DB::raw ( "teacher_id,count(weekday) as wkd" ) )->groupBy ( 'teacher_id' )->orderBy ( 'wkd' , 'DESC' )->get ();
+        foreach ($count as $ct) {
+            if ($ct[ "wkd" ] >= 2) {
+                $rank[] = array("teacher_id" => $ct[ "teacher_id" ] , "rank" => $ct[ "wkd" ]);
+            } else {
+                $rank[] = array("teacher_id" => $ct[ "teacher_id" ] , "rank" => $ct[ "wkd" ]);
+            }
+        }
+        return $rank;
+    }
+
     protected function weekdaySearcher()
     {
         $wk = $this->weekdayUnDuplicator ();
@@ -330,7 +411,7 @@ class TimeTableController extends Controller
 
                 $to = $slot->copy ()->add ( $reqInterval );
                 $pp = $this->slotAvailableDef ( $slot , $to , $people );
-                if ($pp) {
+                if ($pp[ 0 ][ "status" ] === "avaliable") {
                     $avail[ $pp[ 0 ][ "teacher_id" ] ][ "time" ][] = array(
                         "status" => "avaliable" ,
                         "start" => $slot->toDateTimeString () ,
@@ -340,11 +421,22 @@ class TimeTableController extends Controller
                             foreach ($pp as $people_information) {
                                 array_push ( $wkd , $people_information[ "weekday" ] );
                             }
-                            return $wkd;
+                            return end ( $wkd );
                         })()
                     );
-                } else {
-
+                } else if ($pp[ 0 ][ "status" ] === "busy") {
+                    $avail[ $pp[ 0 ][ "teacher_id" ] ][ "time" ][] = array(
+                        "status" => "busy" ,
+                        "start" => $slot->toDateTimeString () ,
+                        "end" => $to->toDateTimeString () ,
+                        "weekday" => (function () use (&$pp) {
+                            $wkd = [];
+                            foreach ($pp as $people_information) {
+                                array_push ( $wkd , $people_information[ "weekday" ] );
+                            }
+                            return end ( $wkd );
+                        })()
+                    );
                 }
                 $i++;
             }
@@ -358,6 +450,8 @@ class TimeTableController extends Controller
         $wk = [];
         $nwk = [];
         $i = 0;
+        $status = "";
+        $weekday = ['mon' , 'tue' , 'wed' , 'thu' , 'fri' , 'sat' , 'sun'];
 
         $tcr = Constraint::whereIn ( 'teacher_id' , $events )->get ()->toArray ();
         foreach ($tcr as $tt) {
@@ -365,11 +459,23 @@ class TimeTableController extends Controller
                 $eventStart = Carbon::instance ( new DateTime( $tt [ 'start_time' ] ) );
                 $eventEnd = Carbon::instance ( new DateTime( $tt [ 'end_time' ] ) );
                 if ($from->between ( $eventStart , $eventEnd ) && $to->between ( $eventStart , $eventEnd )) {
-                    return false;
+
+                    return (function () use (&$nwk , &$wk , &$tt , &$weekday) {
+                        array_push ( $nwk , $tt[ "weekday" ] );
+                        $filter = array_intersect ( $weekday , $nwk );
+                        $status = "busy";
+                        array_push ( $wk , array("teacher_id" => $tt[ 'teacher_id' ]
+                        , "weekday" => $filter , "status" => $status) );
+                        return $wk;
+                    })();
+                } else {
+                    $status = "avaliable";
                 }
             }
             array_push ( $nwk , $tt[ "weekday" ] );
-            array_push ( $wk , array("teacher_id" => $tt[ 'teacher_id' ] , "weekday" => end ( $nwk )) );
+            $filter = array_diff ( $weekday , $nwk );
+            array_push ( $wk , array("teacher_id" => $tt[ 'teacher_id' ]
+            , "weekday" => $filter , "status" => $status) );
         }
         return $wk;
     }
