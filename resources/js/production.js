@@ -78,7 +78,7 @@ $(function() {
                 },
                 {
                     data: function (tid) {
-                        return '<a class="btn btn-primary" href="/management/subjectlist/view/'+tid.subject_id+'">ดูข้อมูลอาจารย์</a>';
+                        return '<button class="btn btn-primary" id="viewsubject" aria-value="'+tid.subject_id+'">ข้อมูลรายวิชา</button>';
                     },
                     name: "subject_id"
                 }
@@ -126,6 +126,34 @@ $(function() {
             },
             buttonsStyling: false
         })
+
+        $('#subjectView tbody').on('click', 'button', function (e) {
+            if (e.target.attributes[1].value === "viewsubject") {
+                // console.log(e.target.attributes[2].value);
+                swalWithBootstrapButtons.fire({
+                    title: 'ข้อมูลรายวิชา',
+                    text: "...",
+
+                })
+                $.ajax({
+                    type: "POST",
+                    url: "/management/teachby/view/",
+                    data: {
+                        subject_id: e.target.attributes[2].value
+                    },
+                    success: function(result) {
+                        var content = '';
+                        $.each(result, function(i, item){ // loop..
+                            content = content + "รหัสอาจารย์ = " + item.teacher_id +  ', ชื่ออาจารย์ = ' + item.teacher_name + ', รหัสวิชา = ' + item.subject_id + ', ชื่อวิชา = ' + item.subject_name + ' <br>';
+                        }); // ..loop
+
+                        $('#content').html(content);
+                    }
+                });
+            } else {
+
+            }
+        });
 
         $('#burdenView tbody').on('click', 'button', function (e) {
             if (e.target.attributes[1].value === "deleteBurden") {

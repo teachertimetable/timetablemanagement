@@ -10,6 +10,17 @@ use App\Models\Constraint;
 
 class TeachByController extends Controller
 {
+    public function index()
+    {
+        $teach = Constraint::with ( 'have' )->get ();
+        return view ( 'test' )->with ( 'teachr' , $teach );
+    }
+    public function viewWhoTeach2(Request $request)
+    {
+        $id = $request->subject_id;
+        $data = TeachBy::where('subject_id',$id)->get();
+        return view('management.subject.subjectdata')->with('teach_by',$data);
+    }
     public function viewWhoTeach(Request $request)
     {
         $e = \App\Models\TeachBy::with ( ['haveTeacher' , 'haveSubjectName'] )->where ( "subject_id" , $request->subject_id )->get ()->toArray ();
@@ -24,5 +35,4 @@ class TeachByController extends Controller
         }
         return response ( $col );
     }
-
 }
