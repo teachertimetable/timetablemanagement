@@ -26,7 +26,7 @@ Route::get ( '/' , 'HomeController@index' );
 /* TIMETABLE CONTROLLER */
 Route::get ( '/management/timetable' , 'TimeTableController@index' )->name ( 'timetable' );
 Route::resource ( '/management/timetable/normal' , 'RESTController\TimeTableREST' );
-Route::get ( '/management/timetable/modular' , 'TimeTableController@showModular' )->name ( 'timetable_modular' );
+Route::resource ( '/management/timetable/modular' , 'RESTController\TimeTableModularREST' );
 /* TIMETABLE CONTROLLER */
 
 /* SUBJECT CONTROLLER */

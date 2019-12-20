@@ -216,6 +216,7 @@ class TimeTableController extends Controller
                                         $m = [];
                                         $timerange = [];
                                         $dff = 0;
+                                        array_push ( $timerange , 0 );
                                         for ($i = 0; $i < count ( $p[ $info[ "have_teacher" ][ "teacher_id" ] ][ 0 ][ "time" ] ); $i++) {
                                             if ($p[ $info[ "have_teacher" ][ "teacher_id" ] ][ 0 ][ "time" ][ $i ][ "status" ] === "avaliable") {
                                                 $start = Carbon::instance ( new DateTime( $p[ $info[ "have_teacher" ][ "teacher_id" ] ][ 0 ][ "time" ][ $i ][ "start" ] ) );
@@ -229,7 +230,11 @@ class TimeTableController extends Controller
                                             }
                                         }
                                         foreach ($timerange as $time) {
-                                            if ($time % substr ( $info[ "have_subject_name" ][ "credit" ] , 2 , 1 ) == 0 || $time === 1) {
+                                            $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time ][ "lecture_hour" ] = substr ( $info[ "have_subject_name" ][ "credit" ] , 2 , 1 );
+                                            if ($time <= 1) {
+                                                $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time ][ "marked" ] = "YES";
+                                            }
+                                            if ($time % substr ( $info[ "have_subject_name" ][ "credit" ] , 2 , 1 ) == 0 || $time <= 1) {
                                                 $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time ][ "marked" ] = "YES";
                                             } else {
                                                 if (!array_key_exists ( "marked" , $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time - 1 ] )) {
