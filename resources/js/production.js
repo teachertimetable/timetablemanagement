@@ -84,9 +84,6 @@ $(function() {
                 }
             ]
         });
-        $('#subjectView tbody').on('click', 'button', function (e) {
-            console.log(e.target);
-        });
         $('#burdenView').DataTable({
             processing: true,
             serverSide: true,
@@ -130,24 +127,23 @@ $(function() {
         $('#subjectView tbody').on('click', 'button', function (e) {
             if (e.target.attributes[1].value === "viewsubject") {
                 // console.log(e.target.attributes[2].value);
-                swalWithBootstrapButtons.fire({
-                    title: 'ข้อมูลรายวิชา',
-                    text: "...",
-
-                })
+                var content = '';
                 $.ajax({
                     type: "POST",
-                    url: "/management/teachby/view/",
+                    url: "/management/teachby/view",
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data: {
                         subject_id: e.target.attributes[2].value
                     },
-                    success: function(result) {
-                        var content = '';
-                        $.each(result, function(i, item){ // loop..
-                            content = content + "รหัสอาจารย์ = " + item.teacher_id +  ', ชื่ออาจารย์ = ' + item.teacher_name + ', รหัสวิชา = ' + item.subject_id + ', ชื่อวิชา = ' + item.subject_name + ' <br>';
+                    success: function (result) {
+                        $.each(result, function (i, item) { // loop..
+                            content = content + "รหัสอาจารย์ = " + item.teacher_id + ',<br/> ชื่ออาจารย์ = ' + item.teacher_name + ', <br/> รหัสวิชา = ' + item.subject_id + ', <br/>ชื่อวิชา = ' + item.subject_name + ' <br>';
                         }); // ..loop
+                        swalWithBootstrapButtons.fire({
+                            title: 'ข้อมูลรายวิชา',
+                            html: content,
 
-                        $('#content').html(content);
+                        })
                     }
                 });
             } else {

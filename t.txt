@@ -1,0 +1,44 @@
++--------+-----------+-----------------------------------------------+-----------------------+------------------------------------------------------------------------+--------------+
+| Domain | Method    | URI                                           | Name                  | Action                                                                 | Middleware   |
++--------+-----------+-----------------------------------------------+-----------------------+------------------------------------------------------------------------+--------------+
+|        | GET|HEAD  | /                                             |                       | App\Http\Controllers\HomeController@index                              | web,auth     |
+|        | GET|HEAD  | api/user                                      |                       | Closure                                                                | api,auth:api |
+|        | POST      | login                                         |                       | App\Http\Controllers\Auth\LoginController@login                        | web,guest    |
+|        | GET|HEAD  | login                                         | login                 | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest    |
+|        | POST      | logout                                        | logout                | App\Http\Controllers\Auth\LoginController@logout                       | web          |
+|        | GET|HEAD  | management/lecturerlist                       | lecturerlist.index    | App\Http\Controllers\RESTController\LecturerREST@index                 | web          |
+|        | POST      | management/lecturerlist                       | lecturerlist.store    | App\Http\Controllers\RESTController\LecturerREST@store                 | web          |
+|        | GET|HEAD  | management/lecturerlist/create                | lecturerlist.create   | App\Http\Controllers\RESTController\LecturerREST@create                | web          |
+|        | GET|HEAD  | management/lecturerlist/view/{id}             |                       | App\Http\Controllers\LecturerController@list                           | web          |
+|        | GET|HEAD  | management/lecturerlist/{lecturerlist}        | lecturerlist.show     | App\Http\Controllers\RESTController\LecturerREST@show                  | web          |
+|        | PUT|PATCH | management/lecturerlist/{lecturerlist}        | lecturerlist.update   | App\Http\Controllers\RESTController\LecturerREST@update                | web          |
+|        | DELETE    | management/lecturerlist/{lecturerlist}        | lecturerlist.destroy  | App\Http\Controllers\RESTController\LecturerREST@destroy               | web          |
+|        | GET|HEAD  | management/lecturerlist/{lecturerlist}/edit   | lecturerlist.edit     | App\Http\Controllers\RESTController\LecturerREST@edit                  | web          |
+|        | GET|HEAD  | management/subjectlist                        | subjectlist.index     | App\Http\Controllers\RESTController\SubjectREST@index                  | web          |
+|        | POST      | management/subjectlist                        | subjectlist.store     | App\Http\Controllers\RESTController\SubjectREST@store                  | web          |
+|        | GET|HEAD  | management/subjectlist/create                 | subjectlist.create    | App\Http\Controllers\RESTController\SubjectREST@create                 | web          |
+|        | GET|HEAD  | management/subjectlist/{subjectlist}          | subjectlist.show      | App\Http\Controllers\RESTController\SubjectREST@show                   | web          |
+|        | DELETE    | management/subjectlist/{subjectlist}          | subjectlist.destroy   | App\Http\Controllers\RESTController\SubjectREST@destroy                | web          |
+|        | PUT|PATCH | management/subjectlist/{subjectlist}          | subjectlist.update    | App\Http\Controllers\RESTController\SubjectREST@update                 | web          |
+|        | GET|HEAD  | management/subjectlist/{subjectlist}/edit     | subjectlist.edit      | App\Http\Controllers\RESTController\SubjectREST@edit                   | web          |
+|        | POST      | management/teacherburden                      | teacherburden.store   | App\Http\Controllers\RESTController\TeacherBurdenREST@store            | web          |
+|        | GET|HEAD  | management/teacherburden                      | teacherburden.index   | App\Http\Controllers\RESTController\TeacherBurdenREST@index            | web          |
+|        | POST      | management/teacherburden/action/addBurden     | saveTeacherBurden     | App\Http\Controllers\TeacherBurdenController@saveBurden                | web          |
+|        | GET|HEAD  | management/teacherburden/action/addBurden     | teacherBurdenAdd      | App\Http\Controllers\TeacherBurdenController@index                     | web          |
+|        | GET|HEAD  | management/teacherburden/create               | teacherburden.create  | App\Http\Controllers\RESTController\TeacherBurdenREST@create           | web          |
+|        | DELETE    | management/teacherburden/{teacherburden}      | teacherburden.destroy | App\Http\Controllers\RESTController\TeacherBurdenREST@destroy          | web          |
+|        | PUT|PATCH | management/teacherburden/{teacherburden}      | teacherburden.update  | App\Http\Controllers\RESTController\TeacherBurdenREST@update           | web          |
+|        | GET|HEAD  | management/teacherburden/{teacherburden}      | teacherburden.show    | App\Http\Controllers\RESTController\TeacherBurdenREST@show             | web          |
+|        | GET|HEAD  | management/teacherburden/{teacherburden}/edit | teacherburden.edit    | App\Http\Controllers\RESTController\TeacherBurdenREST@edit             | web          |
+|        | GET|HEAD  | management/timetable                          | timetable             | App\Http\Controllers\TimeTableController@index                         | web          |
+|        | GET|HEAD  | management/timetable/modular                  | timetable_modular     | App\Http\Controllers\TimeTableController@modular_view                  | web          |
+|        | GET|HEAD  | management/timetable/normal                   | timetable_normal      | App\Http\Controllers\TimeTableController@normal_view                   | web          |
+|        | GET|HEAD  | password/confirm                              | password.confirm      | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm    | web,auth     |
+|        | POST      | password/confirm                              |                       | App\Http\Controllers\Auth\ConfirmPasswordController@confirm            | web,auth     |
+|        | POST      | password/email                                | password.email        | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web          |
+|        | GET|HEAD  | password/reset                                | password.request      | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web          |
+|        | POST      | password/reset                                | password.update       | App\Http\Controllers\Auth\ResetPasswordController@reset                | web          |
+|        | GET|HEAD  | password/reset/{token}                        | password.reset        | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web          |
+|        | POST      | register                                      |                       | App\Http\Controllers\Auth\RegisterController@register                  | web,guest    |
+|        | GET|HEAD  | register                                      | register              | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest    |
++--------+-----------+-----------------------------------------------+-----------------------+------------------------------------------------------------------------+--------------+

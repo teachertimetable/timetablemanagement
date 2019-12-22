@@ -32,8 +32,8 @@ Route::resource ( '/management/timetable/modular' , 'RESTController\TimeTableMod
 /* SUBJECT CONTROLLER */
 Route::get ( '/management/subjectlist' , 'SubjectController@index' )->name ( 'subject' );
 Route::resource ( '/management/subjectlist' , 'RESTController\SubjectREST' );
+Route::post ( '/management/teachby/view' , 'TeachByController@viewWhoTeach' );
 Route::get ( '/management/subjectlist/view/{id}' , 'SubjectController@list' );
-Route::get ( '/management/teachby/view/{subject_id}' , 'TeachByController@viewWhoTeach' );
 /* SUBJECT CONTROLLER */
 
 /* LECTURER CONTROLLER */
@@ -51,7 +51,6 @@ Route::post ( '/management/teacherburden/action/deleteBurden' , 'TeacherBurdenCo
 /* TIMETABLE MANAGEMENT ROUTER */
 
 /* DANGEROUS FIELD */
-Route::get ( '/management/teachby/{subject_id}' , 'TeachByController@viewWhoTeach' );
 Route::get ( '/management/gettime' , 'TimeTableController@shaping' );
 Route::get ( '/management/gettime/showM' , 'TimeTableController@minimalShaping' );
 Route::get ( '/management/gettime/showM/{teacher_id}' , 'TimeTableController@minimalShapingWithID' );
