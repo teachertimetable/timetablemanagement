@@ -71,8 +71,8 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                            aria-haspopup="true" aria-expanded="false">ตารางสอน</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('normal.index') }}">แบบปกติ</a>
-                            <a class="dropdown-item" href="{{ route('modular.index') }}">แบบโมดูล</a>
+                            <a class="dropdown-item" href="{{ route('normalview_tt') }}">แบบปกติ</a>
+                            <a class="dropdown-item" href="{{ route('modularview_tt') }}">แบบโมดูล</a>
                         </div>
                     </li>
                     <li class="nav-item">

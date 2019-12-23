@@ -21,6 +21,15 @@ class TimeTableController extends Controller
         return view ( 'management.timetable' )->with ( 'title' , 'ตารางสอน' );
     }
 
+    /** PRESERVED FOR ROUTE IN WEB */
+    public function normalview(){
+        return view ( 'management.timetable.normal.index' )->with ( 'title' , 'รายวิชาตามตารางสอน' );
+    }
+    public function modularview(){
+        return view ( 'management.timetable.module.index' )->with ( 'title' , 'รายวิชาแบบโมดูลา' );
+    }
+    /** PRESERVED FOR ROUTE IN WEB */
+
     public function minimalShapingWithID(Request $request)
     {
         $shape = $this->shapingWithID ( $request->teacher_id );
