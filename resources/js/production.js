@@ -136,14 +136,21 @@ $(function() {
                         subject_id: e.target.attributes[2].value
                     },
                     success: function (result) {
-                        $.each(result, function (i, item) { // loop..
+                        $.each(result, function (i, item) {
                             content = content + "รหัสอาจารย์ = " + item.teacher_id + ',<br/> ชื่ออาจารย์ = ' + item.teacher_name + ', <br/> รหัสวิชา = ' + item.subject_id + ', <br/>ชื่อวิชา = ' + item.subject_name + ' <br>';
-                        }); // ..loop
-                        swalWithBootstrapButtons.fire({
-                            title: 'ข้อมูลรายวิชา',
-                            html: content,
-
-                        })
+                        });
+                        if (content.length < 3) {
+                            content = "รายวิชานี้ยังไม่มีผู้สอนระบุแน่ชัด <br/>";
+                            swalWithBootstrapButtons.fire({
+                                title: 'ข้อมูลรายวิชา',
+                                html: content,
+                            })
+                        } else {
+                            swalWithBootstrapButtons.fire({
+                                title: 'ข้อมูลรายวิชา',
+                                html: content,
+                            })
+                        }
                     }
                 });
             } else {
