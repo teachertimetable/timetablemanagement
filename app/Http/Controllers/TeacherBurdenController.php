@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Constraint;
 use App\Models\TeacherInfo;
+use Illuminate\Support\Facades\Session;
 
 class TeacherBurdenController extends Controller
 {
@@ -29,9 +30,10 @@ class TeacherBurdenController extends Controller
         $r = explode ( "-" , $request->time );
         $st = $r[ 0 ];
         $ed = $r[ 1 ];
+        $id = Session::get ( 'teacher_id' );
         $con = Constraint::create ( [
             "constraints_title" => $request->constraint_title ,
-            "teacher_id" => $this->randomLecturer () ,
+            "teacher_id" => $id ,
             "weekday" => $request->weekday ,
             "start_time" => $st ,
             "end_time" => $ed

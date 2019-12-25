@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\Constraint;
+use Illuminate\Support\Facades\Session;
 
 class TeacherBurdenREST extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax ()) {
-            $data = Constraint::query ()->get ();
+            $id = Session::get ( 'teacher_id' );
+            $data = Constraint::where ( "teacher_id" , $id )->get ();
             return DataTables::of ( $data )
                 ->make ( true );
         }

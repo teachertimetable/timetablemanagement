@@ -14,6 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        User::truncate ();
         $seedData = $this->seedFromCSV ( "database/csv/user.csv" , ',' );
         foreach ($seedData as $ex) {
             User::create ( [
@@ -23,6 +24,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make ( $ex[ 'password' ] , [
                     'rounds' => 5
                 ] ) ,
+                'privileges' => $ex[ 'privileges' ]
             ] );
         }
 

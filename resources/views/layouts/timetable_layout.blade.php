@@ -82,7 +82,11 @@
                         <a class="nav-link" href="{{ route('lecturerlist.index') }}">รายชื่ออาจารย์</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('teacherburden.index') }}">เงื่อนไขของอาจารย์</a>
+                        @guest
+
+                        @else
+                            <a class="nav-link" href="{{ route('teacherburden.index') }}">เงื่อนไขของอาจารย์</a>
+                        @endguest
                     </li>
                 </ul>
                 <span class="navbar-text">
