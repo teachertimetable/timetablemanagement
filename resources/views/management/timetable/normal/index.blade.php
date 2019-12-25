@@ -6,13 +6,15 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
     </head>
 
     <div class="container py-3">
         <div class="tablemodulebg">
             <center><h1>ตารางแนะนำ</h1><br>
+
 
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">รายชื่ออาจารย์</button>
@@ -43,15 +45,17 @@
 
                     <div class="card mt-8">
                         <img class="card-img-top img-fluid" src="http://placehold.it/900x500" alt="">
-
-
-
                     </div>
+                </div>
                     <br>
 
                     <a href="#" class="previous">&laquo; Previous</a>
                     <a href="#" class="next">Next &raquo;</a>
+            <br><br><br>
 
+            <div>
+                <button class="button"><i class="fa fa-download"></i> Download PDF </button>
+            </div>
 
 
 
