@@ -6,12 +6,24 @@ use Illuminate\Http\Request;
 use App\Models\Constraint;
 use App\Models\TeacherInfo;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherBurdenController extends Controller
 {
     public function index()
     {
-        return view ( 'management.teacherburden.index' )->with ( 'title' , 'ภาระงานของอาจารย์' );
+        if (Auth::check ()) {
+            if (Auth::user ()->privileges === 1) {
+                $teacher = TeacherInfo::query ()->get ();
+                $title = "ภาระงานอาจารย์";
+                return view ( 'management.teacherburden.index' )->with ( ['title' => $title , 'teacher' => $teacher] );
+            } else {
+                return view ( 'management.teacherburden.index' )->with ( 'title' , 'ภาระงานของอาจารย์' );
+            }
+        } else {
+            return redirect ( '/' );
+        }
+
     }
 
     private function randomLecturer()
@@ -31,6 +43,11 @@ class TeacherBurdenController extends Controller
         $st = $r[ 0 ];
         $ed = $r[ 1 ];
         $id = Session::get ( 'teacher_id' );
+        if (isset( $id )) {
+
+        } else if (isset( $request->teacher_id ) && !isset( $id )) {
+            $id = $request->teacher_id;
+        }
         $con = Constraint::create ( [
             "constraints_title" => $request->constraint_title ,
             "teacher_id" => $id ,

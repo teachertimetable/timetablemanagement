@@ -30,7 +30,12 @@ class HomeController extends Controller
         $e = Auth::user ()->email;
         if ($e) {
             $userget = TeacherInfo::where ( "teacher_email" , $e )->get ()->toArray ();
-            Session::put ( "teacher_id" , $userget[ 0 ][ "teacher_id" ] );
+            if (isset( $userget[ 0 ] )) {
+                Session::put ( "teacher_id" , $userget[ 0 ][ "teacher_id" ] );
+
+            } else {
+
+            }
         }
         return view ( 'welcomesite' );
     }
