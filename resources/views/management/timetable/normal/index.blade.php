@@ -8,11 +8,11 @@
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         รายชื่ออาจารย์
                     </button>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="#" id="teacher" value="all">All</a></li>
+                    <ul class="dropdown-menu" id="teacher">
+                        <li class="dropdown-item"><a href="#" value="all">All</a></li>
                         @foreach($teacher as $t)
                             <li class="dropdown-item">
-                                <a href="#" id="teacher" value="{{ $t->teacher_id }}">{{ $t->teacher_name }}</a>
+                                <a href="#" value="{{ $t->teacher_id }}">{{ $t->teacher_name }}</a>
                             </li>
                         @endforeach
                     </ul>
