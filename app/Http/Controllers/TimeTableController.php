@@ -23,7 +23,9 @@ class TimeTableController extends Controller
 
     /** PRESERVED FOR ROUTE IN WEB */
     public function normalview(){
-        return view ( 'management.timetable.normal.index' )->with ( 'title' , 'รายวิชาตามตารางสอน' );
+        $title = "รายวิชาตามตารางสอน";
+        $teacher = TeacherInfo::query ()->get ();
+        return view ( 'management.timetable.normal.index' , compact ( 'title' , 'teacher' ) );
     }
     public function modularview(){
         return view ( 'management.timetable.module.index' )->with ( 'title' , 'รายวิชาแบบโมดูลา' );

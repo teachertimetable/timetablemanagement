@@ -62,8 +62,8 @@
                         @endif
                     </div>
                     <br>
-                    <center><input type="submit" class="btn btn-primary btn-md" value="บันทึก" id="insert"/>
-                        <a href="#" class="btn btn-danger btn-md" role="button"> ยืนยัน </a></center>
+                    <div style="text-align:center"><input type="submit" class="btn btn-primary btn-md" value="บันทึก"
+                                                          id="insert"/></div>
                 </form>
             </div>
         @endguest

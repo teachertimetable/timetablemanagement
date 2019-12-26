@@ -96,7 +96,18 @@ $(function() {
                     name: "constraints_title"
                 },
                 {
-                    data: "weekday",
+                    data: function (day) {
+                        let d = {
+                            "mon": "จันทร์",
+                            "tue": "อังคาร",
+                            "wed": "พุธ",
+                            "thu": "พฤหัสบดี",
+                            "fri": "ศุกร์",
+                            "sat": "เสาร์",
+                            "sun": "อาทิตย์"
+                        };
+                        return d[day.weekday];
+                    },
                     name: "weekday"
                 },
                 {
