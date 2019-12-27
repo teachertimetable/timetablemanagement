@@ -253,7 +253,7 @@ class TimeTableBrainPSRed
         return $k;
     }
 
-    protected static function countLectBurden()
+    public static function countLectBurden()
     {
         $rank = [];
         $item = 0;
@@ -268,7 +268,7 @@ class TimeTableBrainPSRed
         return $rank;
     }
 
-    protected static function weekdaySearcher()
+    public static function weekdaySearcher()
     {
         $wk = TimeTableBrainPSRed::weekdayUnDuplicator ();
         $sett = ['morning' , 'afternoon' , 'evening'];
@@ -303,7 +303,7 @@ class TimeTableBrainPSRed
         return $p;
     }
 
-    protected static function weekdayUnDuplicator()
+    public static function weekdayUnDuplicator()
     {
         $result_avail = TimeTableBrainPSRed::minimalShaping ();
         $kp = [];
@@ -322,7 +322,7 @@ class TimeTableBrainPSRed
         return $kp;
     }
 
-    protected static function minimalShaping()
+    public static function minimalShaping()
     {
         $shape = TimeTableBrainPSRed::shaping ();
         $weekday = ['mon' , 'tue' , 'wed' , 'thu' , 'fri' , 'sat' , 'sun'];

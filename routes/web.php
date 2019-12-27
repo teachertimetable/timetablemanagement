@@ -53,10 +53,10 @@ Route::post ( '/management/teacherburden/action/deleteBurden' , 'TeacherBurdenCo
 /* DANGEROUS FIELD */
 Route::get ( '/management/gettime' , 'TimeTableController@shaping' );
 Route::get ( '/management/gettime/showM' , 'TimeTableController@minimalShaping' );
-Route::get ( '/management/gettime/showM/{teacher_id}' , 'TimeTableController@minimalShapingWithID' );
+Route::post ( '/management/gettime/showWithID' , 'TimeTableController@minimalShapingWithID' );
 Route::get ( '/management/gettime/showTimeAvail' , 'TimeTableController@weekdayUnDuplicator' );
 Route::get ( '/management/gettime/showTimeWithLect' , 'TimeTableController@weekdaySearcher' );
 Route::get ( '/management/countlectburden' , 'TimeTableController@countLectBurden' );
-Route::get ( '/management/timetable_automate' , 'TimeTableController@automata' );
+Route::get ( '/management/timetable_automate/{action}' , 'TimeTableController@automata' );
 /* DANGEROUS FIELD */
 /* ¯\_(ツ)_/¯ */

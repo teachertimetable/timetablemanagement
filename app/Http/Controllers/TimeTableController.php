@@ -28,15 +28,50 @@ class TimeTableController extends Controller
 
     /** PRESERVED FOR ROUTE IN WEB */
 
-    public function automata()
+    public function automata(Request $request)
     {
-        $pq = TimeTableBrainPSRed::automata_nonmodular ();
+        if ($request->action === "non_modular") {
+            $pq = TimeTableBrainPSRed::automata_nonmodular ();
+        } else {
+
+        }
+
         return $pq;
     }
 
     public function minimalShapingWithID(Request $request)
     {
         $mm = TimeTableBrainPSRed::minimalShapingWithID ( $request->teacher_id );
-        return $mm;
+        return response ( $mm );
+    }
+
+    public function shaping()
+    {
+        $sh = TimeTableBrainPSRed::shaping ();
+        return $sh;
+    }
+
+    public function minimalShaping()
+    {
+        $mS = TimeTableBrainPSRed::minimalShaping ();
+        return $mS;
+    }
+
+    public function weekdayUnDuplicator()
+    {
+        $wUD = TimeTableBrainPSRed::weekdayUnDuplicator ();
+        return $wUD;
+    }
+
+    public function weekdaySearcher()
+    {
+        $wS = TimeTableBrainPSRed::weekdaySearcher ();
+        return $wS;
+    }
+
+    public function countLectBurden()
+    {
+        $cLB = TimeTableBrainPSRed::countLectBurden ();
+        return $cLB;
     }
 }

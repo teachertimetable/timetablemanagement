@@ -261,5 +261,28 @@ $(function () {
         $('#teacher li').on('click', function (e) {
             console.log(e.target.attributes.value.value);
         });
+        let rs = "";
+        $('#tableteacher').ready(function (e) {
+
+            $.ajax({
+                type: "POST",
+                url: "/management/gettime/showWithID",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: {
+                    "teacher_id": $('#tableteacher').data('teacher_id')
+                },
+                success: function (result) {
+                    for (let i in result.time) {
+                        rs += "Start at : " + moment(result.time[i].start, "yyyy-mm-dd HH:mm:ss").format("HH:mm") + "<br/>";
+                        rs += "End at : " + moment(result.time[i].end, "yyyy-mm-dd HH:mm:ss").format("HH:mm") + "<br/>";
+                    }
+                    for (let j in result.busy) {
+                        rs += "Busy Start at : " + moment(result.busy[j].start, "yyyy-mm-dd HH:mm:ss").format("HH:mm") + "<br/>";
+                        rs += "Busy End at : " + moment(result.busy[j].end, "yyyy-mm-dd HH:mm:ss").format("HH:mm") + "<br/>";
+                    }
+                    $('#tableteacher').append(rs);
+                }
+            });
+        })
     });
 });
