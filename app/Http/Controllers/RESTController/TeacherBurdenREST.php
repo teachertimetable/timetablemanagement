@@ -21,7 +21,6 @@ class TeacherBurdenREST extends Controller
             } else if (!isset( $id ) && $priv === 1) {
                 $data = Constraint::query ()->get ();
             }
-
             return DataTables::of ( $data )
                 ->make ( true );
         }

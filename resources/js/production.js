@@ -2,7 +2,7 @@ const Swal = require('sweetalert2');
 const moment = require('moment');
 require('datatables.net-bs4');
 
-$(function() {
+$(function () {
     $(document).ready(function () {
         /* DATATABLES (/management/lecturerlist) (/management/subjectlist)*/
         $('#lecturerView').DataTable({
@@ -35,8 +35,8 @@ $(function() {
                     name: "teacher_pic_src"
                 },
                 {
-                    data: function (tid){
-                        return '<a class="btn btn-primary" href="/management/lecturerlist/view/'+tid.teacher_id+'">ดูข้อมูลอาจารย์</a>';
+                    data: function (tid) {
+                        return '<a class="btn btn-primary" href="/management/lecturerlist/view/' + tid.teacher_id + '">ดูข้อมูลอาจารย์</a>';
                     },
                     name: "teacher_id"
                 }
@@ -58,13 +58,13 @@ $(function() {
                     name: "subject_name"
                 },
                 {
-                    data: function(d){
-                        return d.credit.substring(0,1);
+                    data: function (d) {
+                        return d.credit.substring(0, 1);
                     },
                     name: "credit"
                 },
                 {
-                    data: function(d){
+                    data: function (d) {
                         let subcredit = "";
                         let sumiresubcredit = d.credit.substring(2, 7);
                         if (sumiresubcredit === '') {
@@ -78,7 +78,7 @@ $(function() {
                 },
                 {
                     data: function (tid) {
-                        return '<button class="btn btn-primary" id="viewsubject" aria-value="'+tid.subject_id+'">ข้อมูลรายวิชา</button>';
+                        return '<button class="btn btn-primary" id="viewsubject" aria-value="' + tid.subject_id + '">ข้อมูลรายวิชา</button>';
                     },
                     name: "subject_id"
                 }
@@ -133,7 +133,7 @@ $(function() {
                 cancelButton: 'btn btn-danger'
             },
             buttonsStyling: false
-        })
+        });
 
         $('#subjectView tbody').on('click', 'button', function (e) {
             if (e.target.attributes[1].value === "viewsubject") {
@@ -229,7 +229,7 @@ $(function() {
             }
         });
 
-        /* DATATABLES (/management/lecturerlist) (/management/subjectlist) (/management/teacherburden)*/
+        /* DATATABLES (/management/lecturerlist) (/management/subjectlist) (/management/teacherburden) */
         $('#logout').click(function () {
             Swal.fire({
                 title: 'คำเตือน',
@@ -257,6 +257,9 @@ $(function() {
                 showConfirmButton: false,
                 timer: 1500
             })
+        });
+        $('#teacher li').on('click', function (e) {
+            console.log(e.target.attributes.value.value);
         });
     });
 });
