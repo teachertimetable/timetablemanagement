@@ -32,8 +32,8 @@ class TimeTableController extends Controller
     {
         if ($request->action === "non_modular") {
             $pq = TimeTableBrainPSRed::automata_nonmodular ();
-        } else {
-
+        } else if ($request->action === "modular") {
+            /** $pq = TimeTableBrainPSRed::automata_modular (); **/
         }
 
         return $pq;

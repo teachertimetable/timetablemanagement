@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "sourceRoot": "",
+    "sources": [
+        "fontface.scss"
+    ],
+    "names": [],
+    "mappings": "AAAA;AACA;EACI;EACA;EACA;EACA;AAEA;EACA;AAEA;;AAGJ;AACA;EACI;EACA;EACA;EACA;AAEA;EACA;AAEA;;AAGJ;AACA;EACI;EACA;EACA;EACA;AAEA;EACA;AAEA",
+    "file": "fontface.css"
+}

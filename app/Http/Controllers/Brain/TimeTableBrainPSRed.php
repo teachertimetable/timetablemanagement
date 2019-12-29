@@ -253,6 +253,11 @@ class TimeTableBrainPSRed
         return $k;
     }
 
+    public static function automata_modular()
+    {
+
+    }
+
     public static function countLectBurden()
     {
         $rank = [];

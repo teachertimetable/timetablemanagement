@@ -1,0 +1,32 @@
+body,
+html {
+    font-family: "Sarabun", sans-serif;
+    font-size: 15px;
+    scroll-behavior: smooth;
+}
+
+.loginbg {
+    margin-top: 7%;
+    margin-bottom: 7%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: white;
+    box-shadow: 0px 11px 18px -16px rgba(0, 0, 0, 0.75);
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("https://images.unsplash.com/photo-1518133835878-5a93cc3f89e5?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=chris-liverani-rD2dc_2S3i0-unsplash.jpg");
+    min-height: 653px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*# sourceMappingURL=styler.css.map */
