@@ -12,20 +12,25 @@
 */
 
 /* AUTHENTICATION ROUTER */
-Auth::routes();
+Auth::routes ();
 /* AUTHENTICATION ROUTER */
 
 /* ¯\_(ツ)_/¯ */
 
 /* TIMETABLE MANAGEMENT ROUTER */
 
+/* GENERAL CONTROLLER */
+Route::get ( '/management/editinfo' , 'UserInfoController@reach' );
+Route::post ( '/management/editinfo' , 'UserInfoController@edit' );
+/* GENERAL CONTROLLER */
+
 /* HOME CONTROLLER */
 Route::get ( '/' , 'HomeController@index' );
 /* HOME CONTROLLER */
 
 /* TIMETABLE CONTROLLER */
-Route::get ( '/management/timetable/normal' , 'TimeTableController@normalview' )->name('normalview_tt');
-Route::get ( '/management/timetable/modular' , 'TimeTableController@modularview' )->name('modularview_tt');
+Route::get ( '/management/timetable/normal' , 'TimeTableController@normalview' )->name ( 'normalview_tt' );
+Route::get ( '/management/timetable/modular' , 'TimeTableController@modularview' )->name ( 'modularview_tt' );
 
 /* TIMETABLE CONTROLLER */
 

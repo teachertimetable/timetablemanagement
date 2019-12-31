@@ -1,5 +1,6 @@
 const Swal = require('sweetalert2');
 const moment = require('moment');
+require('fullcalendar');
 require('datatables.net-bs4');
 
 $(function () {
@@ -120,7 +121,7 @@ $(function () {
                 },
                 {
                     data: function (tid) {
-                        return '<button class="btn btn-danger" id="deleteBurden" aria-value="' + tid.id + '"><i class="fa-trash"></i>ลบ</button>';
+                        return '<button class="btn btn-danger" id="deleteBurden" aria-value="' + tid.id + '"><i class="fa fa-trash"></i>&nbsp;ลบ</button>';
                     },
                     name: "id"
                 }
@@ -283,6 +284,74 @@ $(function () {
                     $('#tableteacher').append(rs);
                 }
             });
-        })
+        });
+        $('#editInformation').on('click', function () {
+            $.ajax({
+                type: "GET",
+                url: "/management/editinfo",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: {
+                    "userid": $('#editInformation').data('user_id')
+                },
+                success: function (result) {
+                    Swal.fire({
+                        title: 'แก้ไขข้อมูลส่วนตัว',
+                        html: 'ชื่อจริง<input type="text" id="name" class="swal2-input" value="' + result.name + '"/>' +
+                            'นามสกุล<input type="text" id="surname" class="swal2-input" value="' + result.surname + '"/>',
+                        showCancelButton: true,
+                        confirmButtonText: 'ยืนยันการแก้ไขข้อมูล',
+                        showLoaderOnConfirm: true,
+                        preConfirm: function () {
+                            $.ajax({
+                                type: "POST",
+                                url: "/management/editinfo",
+                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                data: {
+                                    "userid": $('#editInformation').data('user_id'),
+                                    "name": $('#name').val(),
+                                    "surname": $('#surname').val()
+                                },
+                                success: function (result) {
+                                    if (result.status === "edited") {
+                                        Swal.fire(
+                                            'สำเร็จ',
+                                            'คุณแก้ไขข้อมูลแล้ว',
+                                            'success'
+                                        );
+                                    } else {
+                                        Swal.fire(
+                                            'ไม่สำเร็จ',
+                                            'คุณแก้ไขไม่สำเร็จ',
+                                            'cancel'
+                                        );
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+            })
+        });
+
+        /* TIMETABLE */
+        $('#timetable').fullCalendar({
+            firstDay: 1,
+            dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ',
+                'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+            header: {
+                left: '',
+                center: '',
+                right: '',
+            },
+            editable: true,
+            views: {
+                timetablecal: {
+                    type: 'agendaWeek',
+                    columnFormat: 'dddd'
+                }
+            },
+            defaultView: 'timetablecal',
+        });
+        /* TIMETABLE */
     });
 });

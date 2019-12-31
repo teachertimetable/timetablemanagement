@@ -48,27 +48,27 @@
                             <a class="nav-link" href="{{ route('teacherburden.index') }}">เงื่อนไขของอาจารย์</a>
                         @endguest
                     </li>
-                </ul>
-                <span class="navbar-text">
+            </ul>
+            <span class="navbar-text">
                         @guest
-                        <a class="nav-link" href="{{ route('login') }}">เข้าสู่ระบบ</a>
-                    @else
-                        <div class="nav-item dropdown">
+                    <a class="nav-link" href="{{ route('login') }}">เข้าสู่ระบบ</a>
+                @else
+                    <div class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="true"
                                    aria-expanded="false">สวัสดี คุณ {{ Auth::user()->name }} {{ Auth::user()->surname }}</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" id="editinfo">แก้ไขข้อมูลส่วนตัว</a>
+                                    <a class="dropdown-item" id="editInformation" data-user_id="{{ Auth::user()->id }}">แก้ไขข้อมูลส่วนตัว</a>
                                     <a class="dropdown-item" id="logout">ออกจากระบบ</a>
                                 </div>
                             </div>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                        @endguest
+                @endguest
                 </span>
-            </div>
+        </div>
         </nav>
         <main class="py-4 parallax">
             @yield('content')
