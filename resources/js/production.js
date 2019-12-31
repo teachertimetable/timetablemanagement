@@ -120,7 +120,7 @@ $(function () {
                 },
                 {
                     data: function (tid) {
-                        return '<button class="btn btn-danger" id="deleteBurden" aria-value="' + tid.id + '">ลบ</button>';
+                        return '<button class="btn btn-danger" id="deleteBurden" aria-value="' + tid.id + '"><i class="fa-trash"></i>ลบ</button>';
                     },
                     name: "id"
                 }
@@ -151,7 +151,7 @@ $(function () {
                             content = content + "รหัสอาจารย์ = " + item.teacher_id + ',<br/> ชื่ออาจารย์ = ' + item.teacher_name + ', <br/> รหัสวิชา = ' + item.subject_id + ', <br/>ชื่อวิชา = ' + item.subject_name + ' <br>';
                         });
                         if (content.length < 3) {
-                            content = "รายวิชานี้ยังไม่มีผู้สอนระบุแน่ชัด <br/>";
+                            content = "รายวิชานี้ยังไม่มีผู้สอนระบุแน่ชัด กรุณารอเพื่อปรับปรุงข้อมูล<br/>";
                             swalWithBootstrapButtons.fire({
                                 title: 'ข้อมูลรายวิชา',
                                 html: content,
