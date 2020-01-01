@@ -11,7 +11,8 @@
                         รหัสอาจารย์ :
                     </div>
                     <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="{{ $teacher->teacher_id }}" disabled>
+                        <input type="text" id="teacher_id" class="form-control" value="{{ $teacher->teacher_id }}"
+                               disabled>
                     </div>
                 </div><br>
                 <div class="row">
@@ -19,7 +20,7 @@
                         ชื่ออาจารย์ :
                     </div>
                     <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="{{ $teacher->teacher_name }}" disabled>
+                        <input type="text" class="form-control" value="{{ $teacher->teacher_name }}" disabled>
                     </div>
                 </div><br>
                 <div class="row">
@@ -27,7 +28,7 @@
                         อีเมลล์ :
                     </div>
                     <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="{{ $teacher->teacher_email }}" disabled>
+                        <input type="text" class="form-control" value="{{ $teacher->teacher_email }}" disabled>
                     </div>
                 </div><br>
                 <div class="row">
@@ -35,14 +36,14 @@
                         เบอร์โทรศัพท์ :
                     </div>
                     <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="{!! $teacher->teacher_tel !!}" disabled>
+                        <input type="text" class="form-control" value="{!! $teacher->teacher_tel !!}" disabled>
                     </div>
                 </div><br>
             @endforeach
             <div id="tableteacher" data-teacher_id="{{ $id }}">
 
             </div>
-                <div id="timetable"></div>
+            <div id="timetable"></div>
         </div>
         <br>
     </div>

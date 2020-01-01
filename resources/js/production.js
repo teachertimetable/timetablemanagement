@@ -338,11 +338,19 @@ $(function () {
             firstDay: 1,
             dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ',
                 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+            slotLabelFormat: 'HH:mm',
             header: {
                 left: '',
                 center: '',
                 right: '',
             },
+            eventSources: [
+                {
+                    "url": "/management/teacherburden/" + $('#teacher_id').val(),
+                    "type": "GET",
+                    "headers": {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+                }
+            ],
             editable: true,
             views: {
                 timetablecal: {

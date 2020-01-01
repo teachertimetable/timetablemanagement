@@ -26,4 +26,14 @@ class TeacherBurdenREST extends Controller
         }
         return view ( 'management.teacherburden.teacherburdenlist' )->with ( 'title' , 'ภาระงานอาจารย์' );
     }
+
+    public function show(Request $request)
+    {
+        $constraint = Constraint::where ( "teacher_id" , $request->teacherburden )->get ()->toArray ();
+        $packFullCal = [];
+        foreach ($constraint as $c) {
+            array_push ( $packFullCal , array("title" => $c[ "constraints_title" ] , "weekday" => $c[ "weekday" ] , "start" => $c[ "start_time" ] , "end" => $c[ "end_time" ]) );
+        }
+        return response ( $packFullCal );
+    }
 }
