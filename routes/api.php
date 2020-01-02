@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Brain\TimeTableBrainPSRed;
 use Illuminate\Http\Request;
 
 /*
@@ -15,4 +16,12 @@ use Illuminate\Http\Request;
 
 Route::middleware ( 'auth:api' )->get ( '/user' , function (Request $request) {
     return $request->user ();
+} );
+
+Route::get ( '/timetable_automate/{action}' , function (Request $q) {
+    if ($q->action === "non_modular") {
+        return TimeTableBrainPSRed::automata_nonmodular ();
+    } else if ($q->action === "modular") {
+        return TimeTableBrainPSRed::automata_modular ();
+    }
 } );
