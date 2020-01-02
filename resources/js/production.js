@@ -1,9 +1,8 @@
 const Swal = require('sweetalert2');
 const moment = require('moment');
-require('fullcalendar');
 require('datatables.net-bs4');
 
-$(function () {
+$(function() {
     $(document).ready(function () {
         /* DATATABLES (/management/lecturerlist) (/management/subjectlist)*/
         $('#lecturerView').DataTable({
@@ -36,8 +35,8 @@ $(function () {
                     name: "teacher_pic_src"
                 },
                 {
-                    data: function (tid) {
-                        return '<a class="btn btn-primary" href="/management/lecturerlist/view/' + tid.teacher_id + '">ดูข้อมูลอาจารย์</a>';
+                    data: function (tid){
+                        return '<a class="btn btn-primary" href="/management/lecturerlist/view/'+tid.teacher_id+'">ดูข้อมูลอาจารย์</a>';
                     },
                     name: "teacher_id"
                 }
@@ -59,13 +58,13 @@ $(function () {
                     name: "subject_name"
                 },
                 {
-                    data: function (d) {
-                        return d.credit.substring(0, 1);
+                    data: function(d){
+                        return d.credit.substring(0,1);
                     },
                     name: "credit"
                 },
                 {
-                    data: function (d) {
+                    data: function(d){
                         let subcredit = "";
                         let sumiresubcredit = d.credit.substring(2, 7);
                         if (sumiresubcredit === '') {
@@ -79,7 +78,7 @@ $(function () {
                 },
                 {
                     data: function (tid) {
-                        return '<button class="btn btn-primary" id="viewsubject" aria-value="' + tid.subject_id + '">ข้อมูลรายวิชา</button>';
+                        return '<button class="btn btn-primary" id="viewsubject" aria-value="'+tid.subject_id+'">ข้อมูลรายวิชา</button>';
                     },
                     name: "subject_id"
                 }
@@ -121,7 +120,7 @@ $(function () {
                 },
                 {
                     data: function (tid) {
-                        return '<button class="btn btn-danger" id="deleteBurden" aria-value="' + tid.id + '"><i class="fa fa-trash"></i>&nbsp;ลบ</button>';
+                        return '<button class="btn btn-danger" id="deleteBurden" aria-value="' + tid.id + '">ลบ</button>';
                     },
                     name: "id"
                 }
@@ -134,7 +133,7 @@ $(function () {
                 cancelButton: 'btn btn-danger'
             },
             buttonsStyling: false
-        });
+        })
 
         $('#subjectView tbody').on('click', 'button', function (e) {
             if (e.target.attributes[1].value === "viewsubject") {
@@ -152,7 +151,7 @@ $(function () {
                             content = content + "รหัสอาจารย์ = " + item.teacher_id + ',<br/> ชื่ออาจารย์ = ' + item.teacher_name + ', <br/> รหัสวิชา = ' + item.subject_id + ', <br/>ชื่อวิชา = ' + item.subject_name + ' <br>';
                         });
                         if (content.length < 3) {
-                            content = "รายวิชานี้ยังไม่มีผู้สอนระบุแน่ชัด กรุณารอเพื่อปรับปรุงข้อมูล<br/>";
+                            content = "รายวิชานี้ยังไม่มีผู้สอนระบุแน่ชัด <br/>";
                             swalWithBootstrapButtons.fire({
                                 title: 'ข้อมูลรายวิชา',
                                 html: content,
@@ -230,7 +229,7 @@ $(function () {
             }
         });
 
-        /* DATATABLES (/management/lecturerlist) (/management/subjectlist) (/management/teacherburden) */
+        /* DATATABLES (/management/lecturerlist) (/management/subjectlist) (/management/teacherburden)*/
         $('#logout').click(function () {
             Swal.fire({
                 title: 'คำเตือน',
@@ -259,107 +258,5 @@ $(function () {
                 timer: 1500
             })
         });
-        $('#teacher li').on('click', function (e) {
-            console.log(e.target.attributes.value.value);
-        });
-        let rs = "";
-        $('#tableteacher').ready(function (e) {
-
-            $.ajax({
-                type: "POST",
-                url: "/management/gettime/showWithID",
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: {
-                    "teacher_id": $('#tableteacher').data('teacher_id')
-                },
-                success: function (result) {
-                    for (let i in result.time) {
-                        rs += "Start at : " + moment(result.time[i].start, "yyyy-mm-dd HH:mm:ss").format("HH:mm") + "<br/>";
-                        rs += "End at : " + moment(result.time[i].end, "yyyy-mm-dd HH:mm:ss").format("HH:mm") + "<br/>";
-                    }
-                    for (let j in result.busy) {
-                        rs += "Busy Start at : " + moment(result.busy[j].start, "yyyy-mm-dd HH:mm:ss").format("HH:mm") + "<br/>";
-                        rs += "Busy End at : " + moment(result.busy[j].end, "yyyy-mm-dd HH:mm:ss").format("HH:mm") + "<br/>";
-                    }
-                    $('#tableteacher').append(rs);
-                }
-            });
-        });
-        $('#editInformation').on('click', function () {
-            $.ajax({
-                type: "GET",
-                url: "/management/editinfo",
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: {
-                    "userid": $('#editInformation').data('user_id')
-                },
-                success: function (result) {
-                    Swal.fire({
-                        title: 'แก้ไขข้อมูลส่วนตัว',
-                        html: 'ชื่อจริง<input type="text" id="name" class="swal2-input" value="' + result.name + '"/>' +
-                            'นามสกุล<input type="text" id="surname" class="swal2-input" value="' + result.surname + '"/>',
-                        showCancelButton: true,
-                        confirmButtonText: 'ยืนยันการแก้ไขข้อมูล',
-                        showLoaderOnConfirm: true,
-                        preConfirm: function () {
-                            $.ajax({
-                                type: "POST",
-                                url: "/management/editinfo",
-                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                data: {
-                                    "userid": $('#editInformation').data('user_id'),
-                                    "name": $('#name').val(),
-                                    "surname": $('#surname').val()
-                                },
-                                success: function (result) {
-                                    if (result.status === "edited") {
-                                        Swal.fire(
-                                            'สำเร็จ',
-                                            'คุณแก้ไขข้อมูลแล้ว',
-                                            'success'
-                                        );
-                                    } else {
-                                        Swal.fire(
-                                            'ไม่สำเร็จ',
-                                            'คุณแก้ไขไม่สำเร็จ',
-                                            'cancel'
-                                        );
-                                    }
-                                }
-                            });
-                        }
-                    });
-                }
-            })
-        });
-
-        /* TIMETABLE */
-        $('#timetable').fullCalendar({
-            firstDay: 1,
-            dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ',
-                'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
-            slotLabelFormat: 'HH:mm',
-            header: {
-                left: '',
-                center: '',
-                right: '',
-            },
-            eventSources: [
-                {
-                    "url": "/management/teacherburden/" + $('#teacher_id').val(),
-                    "type": "GET",
-                    "headers": {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-                }
-            ],
-            editable: true,
-            views: {
-                timetablecal: {
-                    type: 'agendaWeek',
-                    columnFormat: 'dddd'
-                }
-            },
-            defaultView: 'timetablecal',
-        });
-        /* TIMETABLE */
     });
 });
