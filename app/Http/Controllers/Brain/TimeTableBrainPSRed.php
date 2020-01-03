@@ -255,7 +255,17 @@ class TimeTableBrainPSRed
 
     public static function automata_modular()
     {
+        $ranking = TimeTableBrainPSRed::countLectBurden ();
+        $teacher = TimeTableBrainPSRed::weekdaySearcher ();
+        $i = 0;
+        $p = [];
+        $k = [];
+        $sett = ['morning' , 'afternoon' , 'evening'];
+        foreach ($ranking as $rank) {
+            $k[] = $rank;
+        }
 
+        return $k;
     }
 
     public static function countLectBurden()

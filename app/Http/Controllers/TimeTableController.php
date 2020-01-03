@@ -28,16 +28,18 @@ class TimeTableController extends Controller
 
     /** PRESERVED FOR ROUTE IN WEB */
 
-    public function automata(Request $request)
-    {
-        if ($request->action === "non_modular") {
-            $pq = TimeTableBrainPSRed::automata_nonmodular ();
-        } else if ($request->action === "modular") {
-            /** $pq = TimeTableBrainPSRed::automata_modular (); **/
-        }
-
-        return $pq;
-    }
+//    /** AUTOMATED TIMETABLE MANAGEMENT SYSTEMS */
+//    public function automata(Request $request)
+//    {
+//        return (function($q){
+//            if($q === "non_modular"){
+//                return TimeTableBrainPSRed::automata_nonmodular ();
+//            }else if($q === "modular"){
+//                return TimeTableBrainPSRed::automata_modular ();
+//            }
+//        })($request->action);
+//    }
+//    /** AUTOMATED TIMETABLE MANAGEMENT SYSTEMS */
 
     public function minimalShapingWithID(Request $request)
     {
