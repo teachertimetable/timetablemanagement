@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Brain\TimeTableBrainPSRed;
 use Illuminate\Http\Request;
+use App\Models\TeacherInfo;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +19,16 @@ Route::middleware ( 'auth:api' )->get ( '/user' , function (Request $request) {
     return $request->user ();
 } );
 
-Route::get ( '/timetable_automate/{action}' , function (Request $q) {
+Route::get ( 'timetable_automate/{action}' , function (Request $q) {
     if ($q->action === "non_modular") {
         return TimeTableBrainPSRed::automata_nonmodular ();
     } else if ($q->action === "modular") {
         return TimeTableBrainPSRed::automata_modular ();
     }
+} );
+
+Route::post ( 'teacher_info' , function (Request $request) {
+    $req = $request->json ()->all ();
+    $p = TeacherInfo::where ( 'teacher_id' , $req[ 'teacher_id' ] )->get ();
+    return $p;
 } );
