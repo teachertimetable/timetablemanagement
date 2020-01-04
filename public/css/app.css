@@ -1496,7 +1496,7 @@ be a descendant of the grid when it is being dragged.
   font-weight: 400;
   src: url(/fonts/sarabun-v7-latin_thai-regular.eot?b63ebd71d80d97c341054f26cb5e5227);
   /* IE9 Compat Modes */
-  src: local("Sarabun Regular"), local("Sarabun-Regular"), url(/fonts/sarabun-v7-latin_thai-regular.eot?b63ebd71d80d97c341054f26cb5e5227) format("embedded-opentype"), url(/fonts/sarabun-v7-latin_thai-regular.woff2?69c0ec7ea21f4942836486c396ed061b) format("woff2"), url(/fonts/sarabun-v7-latin_thai-regular.woff?d883b4ee36a8d9b4ba8de4803d58d19c) format("woff"), url(/fonts/sarabun-v7-latin_thai-regular.ttf?8cbd62bc1a0e8557b4a53ab3826cf415) format("truetype"), url(/fonts/sarabun-v7-latin_thai-regular.svg?db5cb4f9b95a4b5a73952ec7868a0377) format("svg");
+  src: local("Sarabun Regular"), local("Sarabun-Regular"), url(/fonts/sarabun-v7-latin_thai-regular.eot?b63ebd71d80d97c341054f26cb5e5227) format("embedded-opentype"), url(/fonts/sarabun-v7-latin_thai-regular.woff2?69c0ec7ea21f4942836486c396ed061b) format("woff2"), url(/fonts/sarabun-v7-latin_thai-regular.woff?d883b4ee36a8d9b4ba8de4803d58d19c) format("woff"), url(/fonts/sarabun-v7-latin_thai-regular.ttf?8cbd62bc1a0e8557b4a53ab3826cf415) format("truetype"), url(/fonts/sarabun-v7-latin_thai-regular.svg?2bc94ada3663a8c5ed0f5a0124a44711) format("svg");
   /* Legacy iOS */
 }
 
@@ -1508,7 +1508,7 @@ be a descendant of the grid when it is being dragged.
   font-weight: 400;
   src: url(/fonts/sarabun-v7-latin_thai-italic.eot?468993161a7ff922ca703f39c8484d98);
   /* IE9 Compat Modes */
-  src: local("Sarabun Italic"), local("Sarabun-Italic"), url(/fonts/sarabun-v7-latin_thai-italic.eot?468993161a7ff922ca703f39c8484d98) format("embedded-opentype"), url(/fonts/sarabun-v7-latin_thai-italic.woff2?a94a553bae50e9158aea2918327fc329) format("woff2"), url(/fonts/sarabun-v7-latin_thai-italic.woff?4256e1ceb046845b87c3d3890bc1d77d) format("woff"), url(/fonts/sarabun-v7-latin_thai-italic.ttf?d9542b190905594c48ef5f09bf305cef) format("truetype"), url(/fonts/sarabun-v7-latin_thai-italic.svg?ce13b9fff47647c98ed42487b8cd8652) format("svg");
+  src: local("Sarabun Italic"), local("Sarabun-Italic"), url(/fonts/sarabun-v7-latin_thai-italic.eot?468993161a7ff922ca703f39c8484d98) format("embedded-opentype"), url(/fonts/sarabun-v7-latin_thai-italic.woff2?a94a553bae50e9158aea2918327fc329) format("woff2"), url(/fonts/sarabun-v7-latin_thai-italic.woff?4256e1ceb046845b87c3d3890bc1d77d) format("woff"), url(/fonts/sarabun-v7-latin_thai-italic.ttf?d9542b190905594c48ef5f09bf305cef) format("truetype"), url(/fonts/sarabun-v7-latin_thai-italic.svg?bd9e0bf2f76d87973136e8d4c507125e) format("svg");
   /* Legacy iOS */
 }
 
@@ -1520,7 +1520,7 @@ be a descendant of the grid when it is being dragged.
   font-weight: 600;
   src: url(/fonts/sarabun-v7-latin_thai-600.eot?a09fdef7ed6c4e095953f3c576e89fea);
   /* IE9 Compat Modes */
-  src: local("Sarabun SemiBold"), local("Sarabun-SemiBold"), url(/fonts/sarabun-v7-latin_thai-600.eot?a09fdef7ed6c4e095953f3c576e89fea) format("embedded-opentype"), url(/fonts/sarabun-v7-latin_thai-600.woff2?f0216a0b7b9c5ba205c55a1f69c3a4f7) format("woff2"), url(/fonts/sarabun-v7-latin_thai-600.woff?c67e3db239dc806bcc9860e8093c9e51) format("woff"), url(/fonts/sarabun-v7-latin_thai-600.ttf?46cbea4d173f890ac84bd1b136adec6a) format("truetype"), url(/fonts/sarabun-v7-latin_thai-600.svg?839b44c4c6be4455eb3d276989e5f98c) format("svg");
+  src: local("Sarabun SemiBold"), local("Sarabun-SemiBold"), url(/fonts/sarabun-v7-latin_thai-600.eot?a09fdef7ed6c4e095953f3c576e89fea) format("embedded-opentype"), url(/fonts/sarabun-v7-latin_thai-600.woff2?f0216a0b7b9c5ba205c55a1f69c3a4f7) format("woff2"), url(/fonts/sarabun-v7-latin_thai-600.woff?c67e3db239dc806bcc9860e8093c9e51) format("woff"), url(/fonts/sarabun-v7-latin_thai-600.ttf?46cbea4d173f890ac84bd1b136adec6a) format("truetype"), url(/fonts/sarabun-v7-latin_thai-600.svg?beb70515c2aa9beb0db07ea79522b2ac) format("svg");
   /* Legacy iOS */
 }
 
@@ -1566,7 +1566,7 @@ html {
 @font-face {
   font-family: "FontAwesome";
   src: url(/fonts/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713);
-  src: url(/fonts/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713) format("embedded-opentype"), url(/fonts/fontawesome-webfont.woff2?af7ae505a9eed503f8b8e6982036873e) format("woff2"), url(/fonts/fontawesome-webfont.woff?fee66e712a8a08eef5805a46892932ad) format("woff"), url(/fonts/fontawesome-webfont.ttf?b06871f281fee6b241d60582ae9369b9) format("truetype"), url(/fonts/fontawesome-webfont.svg?4f3e05e3f028c956d293e115153ab4dc) format("svg");
+  src: url(/fonts/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713) format("embedded-opentype"), url(/fonts/fontawesome-webfont.woff2?af7ae505a9eed503f8b8e6982036873e) format("woff2"), url(/fonts/fontawesome-webfont.woff?fee66e712a8a08eef5805a46892932ad) format("woff"), url(/fonts/fontawesome-webfont.ttf?b06871f281fee6b241d60582ae9369b9) format("truetype"), url(/fonts/fontawesome-webfont.svg?dfc25d15525019dde50f390f0202d9f7) format("svg");
   font-weight: normal;
   font-style: normal;
 }

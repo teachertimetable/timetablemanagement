@@ -9,7 +9,7 @@
         @else
             <div class="table-responsive jumbotron shadow">
                 <h2 style="text-align:center">รายการเงื่อนไขการสอน</h2>
-                <a href="{{ route('teacherBurdenAdd') }}" class="btn btn-success">เพิ่มเงื่อนไขการสอน</a><br>
+                <a href="{{ route('teacherBurdenAdd') }}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มเงื่อนไขการสอน</a><br>
                 <table class="table table-bordered" id="burdenView">
                     <thead>
                     <tr>

@@ -37,7 +37,7 @@ $(function () {
                 },
                 {
                     data: function (tid) {
-                        return '<a class="btn btn-primary" href="/management/lecturerlist/view/' + tid.teacher_id + '">ดูข้อมูลอาจารย์</a>';
+                        return '<a class="btn btn-primary" href="/management/lecturerlist/view/' + tid.teacher_id + '"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;ดูข้อมูลอาจารย์</a>';
                     },
                     name: "teacher_id"
                 }
@@ -79,7 +79,7 @@ $(function () {
                 },
                 {
                     data: function (tid) {
-                        return '<button class="btn btn-primary" id="viewsubject" aria-value="' + tid.subject_id + '">ข้อมูลรายวิชา</button>';
+                        return '<button class="btn btn-primary" id="viewsubject" aria-value="' + tid.subject_id + '"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;ข้อมูลรายวิชา</button>';
                     },
                     name: "subject_id"
                 }
