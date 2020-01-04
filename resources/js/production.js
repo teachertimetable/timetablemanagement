@@ -85,6 +85,9 @@ $(function () {
                 }
             ]
         });
+        $('#subjectView tbody').on('click', 'button', function (e) {
+            console.log(e.target);
+        });
         $('#burdenView').DataTable({
             processing: true,
             serverSide: true,
