@@ -253,6 +253,12 @@ class TimeTableBrainPSRed
         return $k;
     }
 
+    public static function countTeach($id)
+    {
+        $teacher = TeachBy::with ( 'haveSubjectName' )->where ( 'teacher_id' , $id )->count ();
+        return $teacher;
+    }
+
     public static function automata_modular()
     {
         $ranking = TimeTableBrainPSRed::countLectBurden ();
@@ -263,9 +269,18 @@ class TimeTableBrainPSRed
         $sett = ['morning' , 'afternoon' , 'evening'];
         foreach ($ranking as $rank) {
             $k[] = $rank;
+            $listdevia[] = $rank[ 'teach_subject' ];
+            if ($listdevia[ $i ] >= 8) {
+                $e = TeachBy::with ( ['haveTeacher' , 'haveSubjectName'] )->where ( "teacher_id" , $rank[ "teacher_id" ] )->get ()->toArray ();
+                $p[ "more" ][ $rank[ 'teacher_id' ] ][] = $e;
+            } else {
+                $e = TeachBy::with ( ['haveTeacher' , 'haveSubjectName'] )->where ( "teacher_id" , $rank[ "teacher_id" ] )->get ()->toArray ();
+                $p[ "less" ][ $rank[ 'teacher_id' ] ][] = $e;
+            }
+            $i++;
         }
 
-        return $k;
+        return $p;
     }
 
     public static function countLectBurden()
@@ -275,9 +290,9 @@ class TimeTableBrainPSRed
         $count = Constraint::select ( DB::raw ( "teacher_id,count(weekday) as wkd" ) )->groupBy ( 'teacher_id' )->orderBy ( 'wkd' , 'DESC' )->get ();
         foreach ($count as $ct) {
             if ($ct[ "wkd" ] >= 2) {
-                $rank[] = array("teacher_id" => $ct[ "teacher_id" ] , "rank" => $ct[ "wkd" ]);
+                $rank[] = array("teacher_id" => $ct[ "teacher_id" ] , "rank" => $ct[ "wkd" ] , "teach_subject" => TimeTableBrainPSRed::countTeach ( $ct[ "teacher_id" ] ));
             } else {
-                $rank[] = array("teacher_id" => $ct[ "teacher_id" ] , "rank" => $ct[ "wkd" ]);
+                $rank[] = array("teacher_id" => $ct[ "teacher_id" ] , "rank" => $ct[ "wkd" ] , "teach_subject" => TimeTableBrainPSRed::countTeach ( $ct[ "teacher_id" ] ));
             }
         }
         return $rank;

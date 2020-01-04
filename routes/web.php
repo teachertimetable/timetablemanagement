@@ -62,6 +62,5 @@ Route::post ( '/management/gettime/showWithID' , 'TimeTableController@minimalSha
 Route::get ( '/management/gettime/showTimeAvail' , 'TimeTableController@weekdayUnDuplicator' );
 Route::get ( '/management/gettime/showTimeWithLect' , 'TimeTableController@weekdaySearcher' );
 Route::get ( '/management/countlectburden' , 'TimeTableController@countLectBurden' );
-//Route::get ( '/management/timetable_automate/{action}' , 'TimeTableController@automata' );
 /* DANGEROUS FIELD */
 /* ¯\_(ツ)_/¯ */
