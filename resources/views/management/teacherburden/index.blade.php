@@ -42,7 +42,7 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div><br>
                     <div class="row">
                         @if(Auth::user()->privileges == 1)
                             <div class="col-md-12">เลือกอาจารย์</div>

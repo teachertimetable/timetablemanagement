@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Models\Constraint;
 use App\Models\TeacherInfo;
@@ -48,14 +49,25 @@ class TeacherBurdenController extends Controller
         } else if (isset( $request->teacher_id ) && !isset( $id )) {
             $id = $request->teacher_id;
         }
-        $con = Constraint::create ( [
-            "constraints_title" => $request->constraint_title ,
-            "teacher_id" => $id ,
-            "weekday" => $request->weekday ,
-            "start_time" => $st ,
-            "end_time" => $ed
-        ] );
-        return redirect ( route ( 'teacherburden.index' ) );
+        $teacherburdennotrepeat = Constraint::where('teacher_id',$id)
+            ->where('start_time',$st)
+            ->where('end_time',$ed)
+            ->get()->count();
+
+        if($teacherburdennotrepeat >= 1){
+
+        }else{
+            $con = Constraint::create ( [
+                "constraints_title" => $request->constraint_title ,
+                "teacher_id" => $id ,
+                "weekday" => $request->weekday ,
+                "start_time" => $st ,
+                "end_time" => $ed
+            ] );
+            return redirect ( route ( 'teacherburden.index' ) );
+        }
+
+
     }
 
     public function deleteBurden(Request $request){
