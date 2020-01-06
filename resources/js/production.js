@@ -296,6 +296,14 @@ $(function () {
                                 swalWithBootstrapButtons.fire({
                                     title: 'ข้อมูลของอาจารย์',
                                     html: content,
+                                });
+                                $.ajax({
+                                    url: "/api/timetable_automate/non_modular",
+                                    type: "GET",
+                                    "headers": {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                    success: function (result) {
+                                        console.log(result[bodycont.teacher_id]);
+                                    }
                                 })
                             }
                         }
@@ -404,8 +412,6 @@ $(function () {
         });
 
         /* TIMETABLE */
-
-
     });
 
 

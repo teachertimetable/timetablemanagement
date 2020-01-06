@@ -26,6 +26,12 @@ class TimeTableController extends Controller
         return view ( 'management.timetable.module.index' )->with ( 'title' , 'รายวิชาแบบโมดูลา' );
     }
 
+    public function weighter()
+    {
+        $w = TimeTableBrainPSRed::weighter ();
+        return $w;
+    }
+
     /** PRESERVED FOR ROUTE IN WEB */
 
 //    /** AUTOMATED TIMETABLE MANAGEMENT SYSTEMS */

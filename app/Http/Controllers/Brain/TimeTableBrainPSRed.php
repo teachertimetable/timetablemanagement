@@ -202,7 +202,7 @@ class TimeTableBrainPSRed
                             foreach ($sett as $set) {
                                 if (array_key_exists ( $info[ "have_teacher" ][ "teacher_id" ] , $teacher[ $set ][ "lecturer_who_unavaliable" ][ "teacher" ] )) {
                                     $p[ $info[ "have_teacher" ][ "teacher_id" ] ][] = $teacher[ $set ][ "lecturer_who_unavaliable" ][ "teacher" ][ $info[ "have_teacher" ][ "teacher_id" ] ];
-                                    $k[] = (function () use (&$p , &$info) {
+                                    $k[ $info[ "have_teacher" ][ "teacher_id" ] ][] = (function () use (&$p , &$info) {
                                         $i = 0;
                                         $v = 0;
                                         $m = [];
