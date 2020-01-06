@@ -13,7 +13,7 @@
                 <div class="col-lg-14">
 
                     <div class="card mt-8">
-                        <table border="1" bordercolor="gray">
+                        <table border="1" bordercolor="lightgray">
                             <tr>
                                 <td bgcolor="#515151"><font color="#FFFFFF">Day/Time</font></td>
                                 <td bgcolor="#515151"><font color="#FFFFFF">9.00-10.00</font></td>
