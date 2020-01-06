@@ -402,7 +402,10 @@ $(function () {
             },
             defaultView: 'timetablecal',
         });
+
         /* TIMETABLE */
+
+
     });
 
 
