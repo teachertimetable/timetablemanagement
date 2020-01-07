@@ -53,6 +53,11 @@ Route::post ( '/management/teacherburden/action/addBurden' , 'TeacherBurdenContr
 Route::post ( '/management/teacherburden/action/deleteBurden' , 'TeacherBurdenController@deleteBurden' )->name ( 'deleteTeacherBurden' );
 /* TeacherBurden CONTROLLER */
 
+/* Teacher Controller */
+Route::get ( '/management/teacher/index' , 'TeacherController@index' )->name ( 'teacherctrl' );
+Route::get ( '/management/teacher/api' , 'TeacherController@apiView' );
+/* Teacher Controller */
+
 /* TIMETABLE MANAGEMENT ROUTER */
 
 /* DANGEROUS FIELD */

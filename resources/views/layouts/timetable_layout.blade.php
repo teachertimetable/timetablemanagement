@@ -38,16 +38,25 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('subjectlist.index') }}">รายวิชา</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('lecturerlist.index') }}">รายชื่ออาจารย์</a>
-                    </li>
-                    <li class="nav-item">
-                        @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('lecturerlist.index') }}">รายชื่ออาจารย์</a>
+                </li>
+                <li class="nav-item">
+                    @guest
 
-                        @else
-                            <a class="nav-link" href="{{ route('teacherburden.index') }}">เงื่อนไขของอาจารย์</a>
-                        @endguest
-                    </li>
+                    @else
+                        <a class="nav-link" href="{{ route('teacherburden.index') }}">เงื่อนไขของอาจารย์</a>
+                    @endguest
+                </li>
+                <li class="nav-item">
+                    @guest
+
+                    @else
+                        @if(Auth::user()->privileges === 2)
+                            <a class="nav-link" href="{{ route('teacherctrl') }}">ข้อมูลเกี่ยวกับฉัน</a>
+                        @endif
+                    @endguest
+                </li>
             </ul>
             <span class="navbar-text">
                         @guest

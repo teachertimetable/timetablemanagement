@@ -223,17 +223,10 @@ class TimeTableBrainPSRed
                                         }
                                         foreach ($timerange as $time) {
                                             $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time ][ "lecture_hour" ] = substr ( $info[ "have_subject_name" ][ "credit" ] , 2 , 1 );
-                                            if ($time <= 1) {
-                                                $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time ][ "marked" ] = "YES";
-                                            }
-                                            if ($time % substr ( $info[ "have_subject_name" ][ "credit" ] , 2 , 1 ) == 0 || $time <= 1) {
+                                            if ($time % substr ( $info[ "have_subject_name" ][ "credit" ] , 2 , 1 ) == 0) {
                                                 $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time ][ "marked" ] = "YES";
                                             } else {
-                                                if (!array_key_exists ( "marked" , $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time - 1 ] )) {
-                                                    $m[ $info[ "have_subject_name" ][ "subject_id" ] ][ $time ][ "marked" ] = "PROBABLY_YES";
-                                                } else {
 
-                                                }
                                             }
                                         }
                                         return $m;

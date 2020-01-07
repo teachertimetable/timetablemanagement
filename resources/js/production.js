@@ -297,14 +297,6 @@ $(function () {
                                     title: 'ข้อมูลของอาจารย์',
                                     html: content,
                                 });
-                                $.ajax({
-                                    url: "/api/timetable_automate/non_modular",
-                                    type: "GET",
-                                    "headers": {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                                    success: function (result) {
-                                        console.log(result[bodycont.teacher_id]);
-                                    }
-                                })
                             }
                         }
                     });
@@ -412,6 +404,47 @@ $(function () {
         });
 
         /* TIMETABLE */
+
+        $('#tblect').ready(function (e) {
+            let table = "";
+            $.ajax({
+                url: "/management/teacher/api",
+                type: "GET",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function (result) {
+                    $.each(result, function (index, element) {
+                        table += "<tr><td>" + element.subject_id + "</td></tr>";
+                        $.each(element.arr, function (index, element) {
+                            if (element.start === undefined && element.marked === undefined) {
+
+                            } else {
+                                let day = "";
+                                $.each(element.weekday, function (index, element) {
+                                    let d = {
+                                        "mon": "จันทร์",
+                                        "tue": "อังคาร",
+                                        "wed": "พุธ",
+                                        "thu": "พฤหัสบดี",
+                                        "fri": "ศุกร์",
+                                        "sat": "เสาร์",
+                                        "sun": "อาทิตย์"
+                                    };
+                                    day += "วัน "
+                                    day += d[element] + " , ";
+                                });
+                                if (element.marked === "YES") {
+                                    table += "<tr style='background-color: beige'><td>" + moment(element.start).format("HH:mm") + "</td><td>" + day + "</td><td><button class='btn btn-success'>ลงได้</button></td></tr>"
+                                } else if (element.marked === "PROBABLY_YES") {
+                                    table += "<tr style='background-color: beige'><td>" + moment(element.start).format("HH:mm") + "</td><td>" + day + "</td><td><button class='btn btn-info'>แนะนำ</button></td></tr>"
+                                }
+                            }
+                        });
+                    });
+                    console.log(table);
+                    $('#tablelect').append(table);
+                }
+            });
+        });
     });
 
 
