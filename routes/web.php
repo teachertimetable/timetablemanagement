@@ -39,6 +39,7 @@ Route::get ( '/management/subjectlist' , 'SubjectController@index' )->name ( 'su
 Route::resource ( '/management/subjectlist' , 'RESTController\SubjectREST' );
 Route::post ( '/management/teachby/view' , 'TeachByController@viewWhoTeach' );
 Route::get ( '/management/subjectlist/view/{id}' , 'SubjectController@list' );
+Route::post ( '/management/subjectlist/poster' , 'SubjectController@edit' );
 /* SUBJECT CONTROLLER */
 
 /* LECTURER CONTROLLER */
@@ -64,10 +65,12 @@ Route::get ( '/management/teacher/api' , 'TeacherController@apiView' );
 Route::get ( '/management/gettime' , 'TimeTableController@shaping' );
 Route::get ( '/management/gettime/showM' , 'TimeTableController@minimalShaping' );
 Route::post ( '/management/gettime/showWithID' , 'TimeTableController@minimalShapingWithID' );
+Route::get ( '/management/gettime/showWithID/{teacher_id}' , 'TimeTableController@minimalShapingWithID' );
 Route::get ( '/management/gettime/showTimeAvail' , 'TimeTableController@weekdayUnDuplicator' );
 Route::get ( '/management/gettime/showTimeWithLect' , 'TimeTableController@weekdaySearcher' );
 Route::get ( '/management/countlectburden' , 'TimeTableController@countLectBurden' );
 Route::get ( '/weighter' , 'TimeTableController@weighter' );
 Route::get ( '/pooler/{action}' , 'TimeTablePoolerController@index' );
+Route::get ( '/experimental' , 'TimeTableController@experimental' );
 /* DANGEROUS FIELD */
 /* ¯\_(ツ)_/¯ */

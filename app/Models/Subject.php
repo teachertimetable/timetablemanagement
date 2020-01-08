@@ -12,7 +12,7 @@ class Subject extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'subject_id' , 'subject_name' , 'credit'
+        'subject_id' , 'subject_name' , 'credit' , 'year'
     ];
 
     public function have()

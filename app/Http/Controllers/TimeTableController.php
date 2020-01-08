@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Brain\TimeTableBrain;
 use App\Http\Controllers\Brain\TimeTableBrainPSRed;
 use App\Models\TeacherInfo;
 use Illuminate\Http\Request;
@@ -81,5 +82,12 @@ class TimeTableController extends Controller
     {
         $cLB = TimeTableBrainPSRed::countLectBurden ();
         return $cLB;
+    }
+
+    public function experimental()
+    {
+        $c = TimeTableBrain::timeslot ();
+        //$c = TimeTableBrain::serializeBurden ();
+        return $c;
     }
 }
