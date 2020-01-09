@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use DateTime;
 use DatePeriod;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class TimeTableBrain
 {
@@ -23,6 +25,33 @@ class TimeTableBrain
     public static $BURDEN = array();
     /** @var $KEY_TEACHERID array to collecting an Key , Make it Globally ! */
     public static $KEY_TEACHERID = array();
+    /** @var $WEEKDAY array to Fixing Weekday */
+    public static $WEEKDAY = ['mon' , 'tue' , 'wed' , 'thu' , 'fri' , 'sat' , 'sun'];
+    /** @var $TESTFIELD array to Testing Field */
+    public static $TESTFIELD = array();
+
+    /** function countLectBurden() for Counting Burden in Lecturer */
+    public static function countLectBurden()
+    {
+        $rank = [];
+        $item = 0;
+        $count = Constraint::select ( DB::raw ( "teacher_id,count(weekday) as wkd" ) )->groupBy ( 'teacher_id' )->orderBy ( 'wkd' , 'DESC' )->get ();
+        foreach ($count as $ct) {
+            if ($ct[ "wkd" ] >= 2) {
+                $rank[] = array("teacher_id" => $ct[ "teacher_id" ] , "rank" => $ct[ "wkd" ]);
+            } else {
+                $rank[] = array("teacher_id" => $ct[ "teacher_id" ] , "rank" => $ct[ "wkd" ]);
+            }
+        }
+        return $rank;
+    }
+
+    public static function sortTeacher()
+    {
+        $timeslot = self::timeslot ();
+
+        return $timeslot;
+    }
 
     /** Slot Searching Function */
     public static function timeslot()
@@ -46,20 +75,46 @@ class TimeTableBrain
         $reqSlotMinutes = 0;
         $reqInterval = CarbonInterval::hour ( $reqSlotHours )->minutes ( $reqSlotMinutes );
 
-        TimeTableBrain::serializeBurden ();
-        foreach (TimeTableBrain::$BURDEN as $timeslot_assessor) {
-            foreach (new DatePeriod( $start , $minInterval , $end ) as $slot) {
-                $to = $slot->copy ()->add ( $reqInterval );
-                $slotAvail = TimeTableBrain::slotAvailable ( $slot , $to , $timeslot_assessor );
-                if ($slotAvail) {
-                    $avaliableTimeSlot[ TimeTableBrain::$KEY_TEACHERID[ $i ] ][] = array("start" => $slot->toTimeString () , "end" => $to->toTimeString ());
-                } else {
-
+        self::serializeBurden ();
+        foreach (self::$BURDEN as $timeslot_assessor) {
+            if (sizeof ( $timeslot_assessor ) >= 1) {
+                foreach (new DatePeriod( $start , $minInterval , $end ) as $slot) {
+                    $to = $slot->copy ()->add ( $reqInterval );
+                    $slotAvail = TimeTableBrain::slotAvailable ( $slot , $to , $timeslot_assessor );
+                    if ($slotAvail) {
+                        foreach (self::ifExistsForeach ( $timeslot_assessor ) as $weekday) {
+                            $avaliableTimeSlot[ self::$KEY_TEACHERID [ $i ] ][ $weekday ][ "avaliable" ][]
+                                = array("start" => $slot->toTimeString () , "end" => $to->toTimeString ());
+                        }
+                    } else {
+                        foreach (self::ifExistsForeach ( $timeslot_assessor ) as $weekday) {
+                            $avaliableTimeSlot[ self::$KEY_TEACHERID [ $i ] ][ $weekday ][ "busy" ][]
+                                = array("start" => $slot->toTimeString () , "end" => $to->toTimeString ());
+                        }
+                    }
+                    foreach (self::$WEEKDAY as $wkd) {
+                        $avaliableTimeSlot[ self::$KEY_TEACHERID [ $i ] ][ $wkd ][ "avaliable" ][]
+                            = array("start" => $slot->toTimeString () , "end" => $to->toTimeString ());
+                    }
+                }
+            } else {
+                foreach (new DatePeriod( $start , $minInterval , $end ) as $slot) {
+                    $to = $slot->copy ()->add ( $reqInterval );
+                    $slotAvail = self::slotAvailable ( $slot , $to , $timeslot_assessor );
+                    if ($slotAvail) {
+                        foreach (self::$WEEKDAY as $weekday) {
+                            $avaliableTimeSlot[ self::$KEY_TEACHERID[ $i ] ][ $weekday ][ "avaliable" ][]
+                                = array("start" => $slot->toTimeString () , "end" => $to->toTimeString ());
+                        }
+                    }
                 }
             }
+            self::$TESTFIELD[ self::$KEY_TEACHERID[ $i ] ] = $timeslot_assessor;
             $i++;
         }
         return $avaliableTimeSlot;
+        //return self::$TESTFIELD;
+        //return self::$CONSTANT_TIMESLOT;
     }
 
     /** Burden Serializer Function serializeBurden */
@@ -68,7 +123,7 @@ class TimeTableBrain
         /** @var $i for Incrementing an Value to Array */
         $i = 0;
         /** @var TimeTableBrain $bd is Calling callBurden Function() */
-        $bd = TimeTableBrain::callBurden ();
+        $bd = self::callBurden ();
         /** @var ArrayIterator $arr to Collect Key Next and Next */
         $arr = new ArrayIterator( $bd );
         /** @var foreach loop from @var $bd into $burden */
@@ -79,12 +134,12 @@ class TimeTableBrain
             /** @var foreach loop from @var $burden into $subburden */
             foreach ($burden as $subburden) {
                 /** Pushing to @global TimeTableBrain::$BURDEN */
-                TimeTableBrain::$BURDEN[ TimeTableBrain::$KEY_TEACHERID[ $i ] ] = $subburden;
+                self::$BURDEN[ self::$KEY_TEACHERID[ $i ] ] = $subburden;
             }
             $i++;
         }
         /** Returning $result to whom use this function */
-        return TimeTableBrain::$BURDEN;
+        return self::$BURDEN;
     }
 
     /** function callBurden() for Calling an Burden */
@@ -94,7 +149,7 @@ class TimeTableBrain
         /** return by λ()->function */
         return (function () {
             /** @var TimeTableBrain $teacher */
-            $teacher = TimeTableBrain::callAllTeacher ();
+            $teacher = self::callAllTeacher ();
             /** @var Array $info for Collecting an Constraints with TeacherInfo */
             $info = [];
             foreach ($teacher as $tc) {
@@ -108,6 +163,7 @@ class TimeTableBrain
         })();
     }
 
+    /** function callAllTeacher() for calling an All of Teacher */
     public static function callAllTeacher()
     {
         return TeacherInfo::all ();
@@ -120,9 +176,30 @@ class TimeTableBrain
             $eventEnd = Carbon::instance ( new DateTime( $event[ 'end_time' ] ) );
             if ($from->between ( $eventStart , $eventEnd ) && $to->between ( $eventStart , $eventEnd )) {
                 return false;
+            } else {
+
             }
         }
         return true;
+    }
+
+    public static function ifExistsForeach($array)
+    {
+        $weekdaypack = [];
+        if (isset( $array )) {
+            foreach ($array as $arr) {
+                if (array_key_exists ( "weekday" , $arr )) {
+                    array_push ( $weekdaypack , $arr[ "weekday" ] );
+
+                } else {
+
+                }
+            }
+        } else {
+            array_push ( $weekdaypack , self::$WEEKDAY );
+        }
+
+        return $weekdaypack;
     }
 
 }

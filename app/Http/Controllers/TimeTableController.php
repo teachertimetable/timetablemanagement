@@ -80,13 +80,13 @@ class TimeTableController extends Controller
 
     public function countLectBurden()
     {
-        $cLB = TimeTableBrainPSRed::countLectBurden ();
+        $cLB = TimeTableBrain::countLectBurden ();
         return $cLB;
     }
 
     public function experimental()
     {
-        $c = TimeTableBrain::timeslot ();
+        $c = TimeTableBrain::sortTeacher ();
         //$c = TimeTableBrain::serializeBurden ();
         return $c;
     }
