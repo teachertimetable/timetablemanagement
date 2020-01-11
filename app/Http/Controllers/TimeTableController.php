@@ -84,9 +84,20 @@ class TimeTableController extends Controller
         return $cLB;
     }
 
-    public function experimental()
+    public function experimental(Request $request)
     {
-        $c = TimeTableBrain::sortTeacher ();
+        // $c = TimeTableBrain::timeslot ();
+        //$c = TimeTableBrain::teacherTimeGenerate ();
+        $c = TimeTableBrain::showSubjectWithID ( $request->id );
+        //$c = TimeTableBrain::serializeBurden ();
+        return $c;
+    }
+
+    public function experimental2()
+    {
+        // $c = TimeTableBrain::timeslot ();
+        //$c = TimeTableBrain::teacherTimeGenerate ();
+        $c = TimeTableBrain::showSubject ();
         //$c = TimeTableBrain::serializeBurden ();
         return $c;
     }

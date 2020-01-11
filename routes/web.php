@@ -71,6 +71,7 @@ Route::get ( '/management/gettime/showTimeWithLect' , 'TimeTableController@weekd
 Route::get ( '/management/countlectburden' , 'TimeTableController@countLectBurden' );
 Route::get ( '/weighter' , 'TimeTableController@weighter' );
 Route::get ( '/pooler/{action}' , 'TimeTablePoolerController@index' );
-Route::get ( '/experimental' , 'TimeTableController@experimental' );
+Route::get ( '/experimental/{id}' , 'TimeTableController@experimental' );
+Route::get ( '/experimental' , 'TimeTableController@experimental2' );
 /* DANGEROUS FIELD */
 /* ¯\_(ツ)_/¯ */
