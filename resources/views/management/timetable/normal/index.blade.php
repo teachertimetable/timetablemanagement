@@ -9,7 +9,7 @@
                         รายชื่ออาจารย์
                     </button>
                     <ul class="dropdown-menu" id="teacher">
-                        <li class="dropdown-item"><a href="#" value="all">All</a></li>
+                        <li class="dropdown-item"><a href="#" value="all" onclick="teacherTimeTable('all')">All</a></li>
                         @foreach($teacher as $t)
                             <li class="dropdown-item">
                                 <a href="#" value="{{ $t->teacher_id }}"
