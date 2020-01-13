@@ -44,6 +44,7 @@ Route::post ( '/management/subjectlist/poster' , 'SubjectController@edit' );
 
 /* LECTURER CONTROLLER */
 Route::resource ( '/management/lecturerlist' , 'RESTController\LecturerREST' );
+Route::resource ( '/management/lecturerlist/teachby' , 'RESTController\LecturerREST@teachby' );
 Route::get ( '/management/lecturerlist/view/{id}' , 'LecturerController@list' );
 /* LECTURER CONTROLLER */
 

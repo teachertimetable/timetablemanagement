@@ -105,7 +105,7 @@ $(function () {
                 },
                 {
                     data: function (img) {
-                        return '<img width="100px" class="mx-auto d-block" src="' + img.teacher_pic_src + '"/>';
+                        return '<img width="100px" class="mx-auto d-block img-thumbnail" src="' + img.teacher_pic_src + '"/>';
                     },
                     name: "teacher_pic_src"
                 },
@@ -157,6 +157,42 @@ $(function () {
                     },
                     name: "subject_id"
                 }
+            ]
+        });
+        $('#teachsubjectView').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "/management/subjectlist",
+            },
+            columns: [
+                {
+                    data: "subject_id",
+                    name: "subject_id"
+                },
+                {
+                    data: "subject_name",
+                    name: "subject_name"
+                },
+                {
+                    data: function (d) {
+                        return d.credit.substring(0, 1);
+                    },
+                    name: "credit"
+                },
+                {
+                    data: function (d) {
+                        let subcredit = "";
+                        let sumiresubcredit = d.credit.substring(2, 7);
+                        if (sumiresubcredit === '') {
+                            subcredit = "ไม่มีการเรียนการสอน";
+                        } else {
+                            subcredit = sumiresubcredit;
+                        }
+                        return subcredit;
+                    },
+                    name: "credit"
+                },
             ]
         });
         $('#burdenView').DataTable({
@@ -330,10 +366,17 @@ $(function () {
                 icon: 'success',
                 title: 'บันทึกสำเร็จ',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 10000
             })
         });
-
+        $('#failinsert').click(function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'บันทึกไม่่สำเร็จ เงื่นไขวันเวลาซ้ำกัน',
+                showConfirmButton: false,
+                timer: 10000
+            })
+        });
         let rs = "";
         $('#tableteacher').ready(function (e) {
 

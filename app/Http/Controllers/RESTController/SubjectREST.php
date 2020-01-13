@@ -5,8 +5,10 @@ namespace App\Http\Controllers\RESTController;
 use Illuminate\Http\Request;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectREST extends Controller
 {

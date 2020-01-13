@@ -50,12 +50,13 @@ class TeacherBurdenController extends Controller
             $id = $request->teacher_id;
         }
         $teacherburdennotrepeat = Constraint::where('teacher_id',$id)
-            ->where('weekday',$st)
+            ->where('weekday', $request->weekday)
             ->where('start_time',$st)
             ->where('end_time',$ed)
             ->get()->count();
 
         if($teacherburdennotrepeat >= 1){
+            
 
         }else{
             $con = Constraint::create ( [

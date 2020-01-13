@@ -100754,6 +100754,79 @@ __webpack_require__(/*! fullcalendar */ "./node_modules/fullcalendar/dist/fullca
 
 __webpack_require__(/*! datatables.net-bs4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js");
 
+window.teacherTimeTable = function (id) {
+  var teacherval = id;
+  Swal.fire({
+    title: 'คำเตือน',
+    text: "แน่ใจว่าคุณจะดูตารางของอาจารย์คนนี้ ?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'ใช่'
+  }).then(function (result) {
+    if (result.value) {
+      var content = '';
+      var bodycont = {
+        "teacher_id": teacherval.toString()
+      }; // $.ajax({
+      //     type: "POST",
+      //     url: "/api/teacher_info",
+      //     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      //     contentType: "application/json; charset=utf-8",
+      //     data: JSON.stringify(bodycont),
+      //     dataType: 'json',
+      //     success: function(result){
+      //         $.each(result, function (i, item) {
+      //             content = content + "รหัสอาจารย์ = " + item.teacher_id + '<br/> ชื่ออาจารย์ = ' + item.teacher_name + '<br/> ตำแหน่ง = ' + item.position + '  <br/> Email = ' + item.teacher_email + ' <br/> เบอร์ติดต่อ = ' + item.teacher_tel + ' <br>';
+      //         });
+      //         if (content.length < 3) {
+      //             content = "รายวิชานี้ยังไม่มีผู้สอนระบุแน่ชัด กรุณารอเพื่อปรับปรุงข้อมูล<br/>";
+      //             swalWithBootstrapButtons.fire({
+      //                 title: 'ข้อมูลของอาจารย์',
+      //                 html: content,
+      //             })
+      //         } else {
+      //             swalWithBootstrapButtons.fire({
+      //                 title: 'ข้อมูลของอาจารย์',
+      //                 html: content,
+      //             });
+      //         }
+      //     }
+      // });
+
+      /* TIMETABLE */
+
+      $('#timetableAll').fullCalendar({
+        firstDay: 1,
+        dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+        slotLabelFormat: 'HH:mm',
+        header: {
+          left: '',
+          center: '',
+          right: ''
+        },
+        eventSources: [{
+          "url": "/experimental/" + bodycont.teacher_id,
+          "type": "GET",
+          "headers": {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        }],
+        views: {
+          timetablecal: {
+            type: 'agendaWeek',
+            columnFormat: 'dddd',
+            timeFormat: 'HH:mm'
+          }
+        },
+        defaultView: 'timetablecal'
+      });
+      /* TIMETABLE */
+    }
+  });
+};
+
 $(function () {
   $(document).ready(function () {
     /* DATATABLES (/management/lecturerlist) (/management/subjectlist)*/
@@ -100777,7 +100850,7 @@ $(function () {
         name: "teacher_tel"
       }, {
         data: function data(img) {
-          return '<img width="100px" class="mx-auto d-block" src="' + img.teacher_pic_src + '"/>';
+          return '<img width="100px" class="mx-auto d-block img-thumbnail" src="' + img.teacher_pic_src + '"/>';
         },
         name: "teacher_pic_src"
       }, {
@@ -100820,9 +100893,42 @@ $(function () {
         name: "credit"
       }, {
         data: function data(tid) {
-          return '<button class="btn btn-primary" id="viewsubject" aria-value="' + tid.subject_id + '"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;ข้อมูลรายวิชา</button>';
+          return '<button class="btn btn-primary" id="viewsubject" aria-value="' + tid.subject_id + '"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;ข้อมูลรายวิชา</button>' + '<a href="/management/subjectlist/view/' + tid.subject_id + '" class="btn btn-warning" aria-value="' + tid.subject_id + '"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;แก้ไขชั้นปี</a>';
         },
         name: "subject_id"
+      }]
+    });
+    $('#teachsubjectView').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: {
+        url: "/management/subjectlist"
+      },
+      columns: [{
+        data: "subject_id",
+        name: "subject_id"
+      }, {
+        data: "subject_name",
+        name: "subject_name"
+      }, {
+        data: function data(d) {
+          return d.credit.substring(0, 1);
+        },
+        name: "credit"
+      }, {
+        data: function data(d) {
+          var subcredit = "";
+          var sumiresubcredit = d.credit.substring(2, 7);
+
+          if (sumiresubcredit === '') {
+            subcredit = "ไม่มีการเรียนการสอน";
+          } else {
+            subcredit = sumiresubcredit;
+          }
+
+          return subcredit;
+        },
+        name: "credit"
       }]
     });
     $('#burdenView').DataTable({
@@ -100971,64 +101077,15 @@ $(function () {
         icon: 'success',
         title: 'บันทึกสำเร็จ',
         showConfirmButton: false,
-        timer: 1500
+        timer: 10000
       });
     });
-    $('#teacher li').on('click', function (e) {
-      var teacherval = e.target.attributes.value.value;
+    $('#failinsert').click(function () {
       Swal.fire({
-        title: 'คำเตือน',
-        text: "แน่ใจว่าคุณจะดูตารางของอาจารย์คนนี้ ?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'ใช่'
-      }).then(function (result) {
-        if (result.value) {
-          var content = '';
-          var bodycont = {
-            "teacher_id": teacherval.toString()
-          };
-          $.ajax({
-            type: "POST",
-            url: "/api/teacher_info",
-            headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(bodycont),
-            dataType: 'json',
-            success: function success(result) {
-              $.each(result, function (i, item) {
-                content = content + "รหัสอาจารย์ = " + item.teacher_id + '<br/> ชื่ออาจารย์ = ' + item.teacher_name + '<br/> ตำแหน่ง = ' + item.position + '  <br/> Email = ' + item.teacher_email + ' <br/> เบอร์ติดต่อ = ' + item.teacher_tel + ' <br>';
-              });
-
-              if (content.length < 3) {
-                content = "รายวิชานี้ยังไม่มีผู้สอนระบุแน่ชัด กรุณารอเพื่อปรับปรุงข้อมูล<br/>";
-                swalWithBootstrapButtons.fire({
-                  title: 'ข้อมูลของอาจารย์',
-                  html: content
-                });
-              } else {
-                swalWithBootstrapButtons.fire({
-                  title: 'ข้อมูลของอาจารย์',
-                  html: content
-                });
-                $.ajax({
-                  url: "/api/timetable_automate/non_modular",
-                  type: "GET",
-                  "headers": {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  },
-                  success: function success(result) {
-                    console.log(result[bodycont.teacher_id]);
-                  }
-                });
-              }
-            }
-          });
-        }
+        icon: 'error',
+        title: 'บันทึกไม่่สำเร็จ เงื่นไขวันเวลาซ้ำกัน',
+        showConfirmButton: false,
+        timer: 10000
       });
     });
     var rs = "";
@@ -101127,6 +101184,34 @@ $(function () {
       defaultView: 'timetablecal'
     });
     /* TIMETABLE */
+    //
+    // /* TIMETABLE */
+    // $('#timetableAll').fullCalendar({
+    //     firstDay: 1,
+    //     dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ',
+    //         'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+    //     slotLabelFormat: 'HH:mm',
+    //     header: {
+    //         left: '',
+    //         center: '',
+    //         right: '',
+    //     },
+    //     eventSources: [
+    //         {
+    //             "url": "/experimental",
+    //             "type": "GET",
+    //             "headers": {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+    //         }
+    //     ],
+    //     editable: true,
+    //     views: {
+    //         timetablecal: {
+    //             type: 'agendaWeek',
+    //             columnFormat: 'dddd'
+    //         }
+    //     },
+    //     defaultView: 'timetablecal',
+    // });
   });
 });
 

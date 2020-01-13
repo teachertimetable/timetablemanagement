@@ -4,7 +4,7 @@
     <div class="container py-3">
         <div class="table-responsive jumbotron shadow">
             @foreach($data as $teacher)
-                <h2 style="text-align:center">ข้อมูลอาจารย์</h2><br><br>
+                <h2 style="text-align:center">ข้อมูลอาจารย์</h2> <hr></hr><br><br>
                 <img width="200px" class="mx-auto d-block img-thumbnail" src="{{ $teacher->teacher_pic_src }}"/><br>
                 <div class="row">
                     <div class="col-md-2">
@@ -40,10 +40,15 @@
                     </div>
                 </div><br>
             @endforeach
-            <div id="tableteacher" data-teacher_id="{{ $id }}">
 
+
+        </div>
+        <div class="jumbotron shadow">
+            <div class="container">
+                <h2>ตารางสอน</h2>
+                <hr></hr>
+                <div id="timetable"></div>
             </div>
-            <div id="timetable"></div>
         </div>
         <br>
     </div>
