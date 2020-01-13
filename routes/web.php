@@ -40,6 +40,7 @@ Route::resource ( '/management/subjectlist' , 'RESTController\SubjectREST' );
 Route::post ( '/management/teachby/view' , 'TeachByController@viewWhoTeach' );
 Route::get ( '/management/subjectlist/view/{id}' , 'SubjectController@list' );
 Route::post ( '/management/subjectlist/poster' , 'SubjectController@edit' );
+Route::resource ( '/management/teachbylist' , 'RESTController\TeachbyREST' );
 /* SUBJECT CONTROLLER */
 
 /* LECTURER CONTROLLER */

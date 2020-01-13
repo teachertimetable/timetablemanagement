@@ -153,7 +153,7 @@ $(function () {
                 },
                 {
                     data: function (tid) {
-                        return '<button class="btn btn-primary" id="viewsubject" aria-value="' + tid.subject_id + '"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;ข้อมูลรายวิชา</button>' + '<a href="/management/subjectlist/view/' + tid.subject_id + '" class="btn btn-warning" aria-value="' + tid.subject_id + '"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;แก้ไขชั้นปี</a>';
+                        return '<button class="btn btn-primary" id="viewsubject" aria-value="' + tid.subject_id + '"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;ข้อมูลรายวิชา</button>';
                     },
                     name: "subject_id"
                 }
@@ -163,7 +163,7 @@ $(function () {
             processing: true,
             serverSide: true,
             ajax: {
-                url: "/management/subjectlist",
+                url: "/management/teachbylist",
             },
             columns: [
                 {
