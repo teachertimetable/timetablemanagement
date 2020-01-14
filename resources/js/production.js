@@ -372,7 +372,7 @@ $(function () {
         $('#failinsert').click(function () {
             Swal.fire({
                 icon: 'error',
-                title: 'บันทึกไม่่สำเร็จ เงื่นไขวันเวลาซ้ำกัน',
+                title: 'บันทึกไม่สำเร็จ เงื่อนไขวันเวลาซ้ำกัน',
                 showConfirmButton: false,
                 timer: 10000
             })

@@ -56,7 +56,7 @@ class TeacherBurdenController extends Controller
             ->get()->count();
 
         if($teacherburdennotrepeat >= 1){
-            
+            return redirect()->back()->with('error', 'Profile updated!');
 
         }else{
             $con = Constraint::create ( [
