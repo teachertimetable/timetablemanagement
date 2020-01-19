@@ -63,7 +63,7 @@
                     </div>
                     <br>
                     <div style="text-align:center"><input type="submit" class="btn btn-primary btn-md" value="บันทึก"
-                                                          id="insert"/></div>
+                                                          id=""/></div>
                 </form>
             </div>
         @endguest

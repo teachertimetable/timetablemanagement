@@ -15,22 +15,22 @@
                         <div class="col-10 py-4 bg-light text-dark"><br>
                             <div class="row">
                                 <div class="col-6"style="text-align: right">
-                                    <h4>รหัสอาจารย์ &emsp;:</h4>
-                                    <h4>ชื่อ &emsp;:</h4>
-                                    <h4>อีเมลล์ &emsp;:</h4>
-                                    <h4>ตำแหน่ง &emsp;:</h4>
-                                    <h4>เบอร์โทร &emsp;:</h4>
-                                    <h4>Fax &emsp;:</h4>
-                                    <h4>หลักสูตร &emsp;:</h4>
+                                    <h5>รหัสอาจารย์ &emsp;:</h5>
+                                    <h5>ชื่อ &emsp;:</h5>
+                                    <h5>อีเมลล์ &emsp;:</h5>
+                                    <h5>ตำแหน่ง &emsp;:</h5>
+                                    <h5>เบอร์โทร &emsp;:</h5>
+                                    <h5>Fax &emsp;:</h5>
+                                    <h5>หลักสูตร &emsp;:</h5>
                                 </div>
                                 <div class="col-6" style="text-align: left">
-                                    <h4>{{ $u["teacher_id"] }}</h4>
-                                    <h4>{{ $u["teacher_name"] }}</h4>
-                                    <h4>{{ $u["teacher_email"] }}</h4>
-                                    <h4>{{ $u["position"] }}</h4>
-                                    <h4>{{ $u["teacher_tel"] }}</h4>
-                                    <h4>{{ $u["teacher_tel_fax"] }}</h4>
-                                    <h4>{{ $u["minor"] }}</h4>
+                                    <h5>{{ $u["teacher_id"] }}</h5>
+                                    <h5>{{ $u["teacher_name"] }}</h5>
+                                    <h5>{{ $u["teacher_email"] }}</h5>
+                                    <h5>{{ $u["position"] }}</h5>
+                                    <h5>{{ $u["teacher_tel"] }}</h5>
+                                    <h5>{{ $u["teacher_tel_fax"] }}</h5>
+                                    <h5>{{ $u["minor"] }}</h5>
                                 </div>
                             </div>
                         </div>
