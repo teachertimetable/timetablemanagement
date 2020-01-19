@@ -6,6 +6,7 @@ use App\Http\Controllers\Brain\TimeTableBrain;
 use App\Http\Controllers\Brain\TimeTableBrainPSRed;
 use App\Models\TeacherInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TimeTableController extends Controller
 {
@@ -35,49 +36,6 @@ class TimeTableController extends Controller
 
     /** PRESERVED FOR ROUTE IN WEB */
 
-//    /** AUTOMATED TIMETABLE MANAGEMENT SYSTEMS */
-//    public function automata(Request $request)
-//    {
-//        return (function($q){
-//            if($q === "non_modular"){
-//                return TimeTableBrainPSRed::automata_nonmodular ();
-//            }else if($q === "modular"){
-//                return TimeTableBrainPSRed::automata_modular ();
-//            }
-//        })($request->action);
-//    }
-//    /** AUTOMATED TIMETABLE MANAGEMENT SYSTEMS */
-
-    public function minimalShapingWithID(Request $request)
-    {
-        $mm = TimeTableBrainPSRed::minimalShapingWithID ( $request->teacher_id );
-        return response ( $mm );
-    }
-
-    public function shaping()
-    {
-        $sh = TimeTableBrainPSRed::shaping ();
-        return $sh;
-    }
-
-    public function minimalShaping()
-    {
-        $mS = TimeTableBrainPSRed::minimalShaping ();
-        return $mS;
-    }
-
-    public function weekdayUnDuplicator()
-    {
-        $wUD = TimeTableBrainPSRed::weekdayUnDuplicator ();
-        return $wUD;
-    }
-
-    public function weekdaySearcher()
-    {
-        $wS = TimeTableBrainPSRed::weekdaySearcher ();
-        return $wS;
-    }
-
     public function countLectBurden()
     {
         $cLB = TimeTableBrain::countLectBurden ();
@@ -86,19 +44,65 @@ class TimeTableController extends Controller
 
     public function experimental(Request $request)
     {
-        // $c = TimeTableBrain::timeslot ();
-        //$c = TimeTableBrain::teacherTimeGenerate ();
-        $c = TimeTableBrain::showSubjectWithID ( $request->id );
-        //$c = TimeTableBrain::serializeBurden ();
+        $c = TimeTableBrain::showSubjectWithID_NonModular ( $request->id );
         return $c;
     }
 
-    public function experimental2()
+    public function generateTimeslot(Request $request)
     {
-        // $c = TimeTableBrain::timeslot ();
-        //$c = TimeTableBrain::teacherTimeGenerate ();
-        $c = TimeTableBrain::showSubject ();
-        //$c = TimeTableBrain::serializeBurden ();
-        return $c;
+        if ($request->ajax ()) {
+            if (Auth::check ()) {
+                if (Auth::user ()->privileges === 1) {
+                    for ($i = 0; $i <= 100; $i++) {
+                        TimeTableBrain::teacherTimeGenerate ();
+                    }
+                    return response ( array('status' => 'generate_completed') );
+                } else {
+                    return response ( array('status' => 'incompleted') );
+                }
+            } else {
+                return response ( array('status' => 'unauthorized') );
+            }
+        }
+    }
+
+    public function viewTimeTableTeacherID(Request $request)
+    {
+        return TimeTableBrain::showTimeTable ( $request->teacher_id );
+    }
+
+    public function viewAllTeacher()
+    {
+        return TimeTableBrain::showAllTimeTable ();
+    }
+
+    public function viewModularCTG(Request $request)
+    {
+        return TimeTableBrain::showTimeTableModular ( $request->ctg );
+    }
+
+    public function ex()
+    {
+        return TimeTableBrain::teacherTimeGenerate ();
+    }
+
+    public function generateTimeTablePerPerson(Request $request)
+    {
+        if ($request->ajax ()) {
+            if (Auth::check ()) {
+                if (Auth::user ()->privileges === 1) {
+                    $t = TeacherInfo::query ()->get ( 'teacher_id' );
+                    foreach ($t as $teacher) {
+                        TimeTableBrain::showSubjectWithID_NonModular ( $teacher[ "teacher_id" ] );
+                        TimeTableBrain::showSubjectWithID_Module ( $teacher[ "teacher_id" ] );
+                    }
+                    return response ( array('status' => "generate_completed") );
+                } else {
+                    return response ( array('status' => 'incompleted') );
+                }
+            } else {
+                return response ( array('status' => 'unauthorized') );
+            }
+        }
     }
 }

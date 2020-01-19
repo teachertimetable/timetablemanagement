@@ -54,6 +54,8 @@
                     @else
                         @if(Auth::user()->privileges === 2)
                             <a class="nav-link" href="{{ route('teacherctrl') }}">ข้อมูลเกี่ยวกับฉัน</a>
+                        @elseif(Auth::user()->privileges === 1)
+                            <a class="nav-link" href="{{ route('Admincontrol') }}">ควบคุมระบบ</a>
                         @endif
                     @endguest
                 </li>
