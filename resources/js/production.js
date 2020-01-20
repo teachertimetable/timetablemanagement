@@ -469,7 +469,7 @@ $(function () {
             },
             eventSources: [
                 {
-                    "url": "/management/teacherburden/" + $('#teacher_id').val(),
+                    "url": "/management/timetable/view/" + $('#teacher_id').val(),
                     "type": "GET",
                     "headers": {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
                 }
