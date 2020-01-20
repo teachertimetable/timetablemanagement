@@ -28,7 +28,7 @@
                         <img src="{{URL::asset('/img/profile.jpg')}}" alt="profile Pic" height="200" width="200">
                         <h5>B5972364</h5> <h5>นายไพฑูรย์ เนติรังษีวัชรา</h5>
                     </div>
-                </div>
+                </div><br>
                 </center></div>
     </div>
 @endsection
