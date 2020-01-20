@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Subject;
+use Illuminate\Support\Facades\DB;
 
 class YearSeed extends Seeder
 {
@@ -14,9 +15,7 @@ class YearSeed extends Seeder
     {
         $seedData = $this->seedFromCSV ( "database/csv/yearteach.csv" , ',' );
         foreach ($seedData as $ex) {
-            $subject = Subject::find ( $ex[ "subject_id" ] );
-            $subject->year = $ex[ "year" ];
-            $subject->save ();
+            DB::table ( 'subject' )->where ( 'subject_id' , $ex[ 'subject_id' ] )->update ( ['year' => $ex[ 'year' ]] );
         }
     }
 

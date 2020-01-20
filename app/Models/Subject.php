@@ -10,6 +10,7 @@ class Subject extends Model
     protected $primaryKey = 'subject_id';
     public $incrementing = false;
     protected $keyType = 'string';
+    public $timestamps = false;
 
     protected $fillable = [
         'subject_id' , 'subject_name' , 'credit' , 'year'

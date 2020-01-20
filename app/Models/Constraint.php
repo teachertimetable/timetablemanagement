@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Constraint extends Model
 {
-    public $timestamps = true;
+    public $timestamps = false;
     protected $table = "constraints_teacher";
     protected $primaryKey = "id";
     protected $fillable = [

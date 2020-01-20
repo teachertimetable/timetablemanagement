@@ -16,7 +16,7 @@ use App\Models\TeachBy;
 use App\Models\TimeFit;
 use Illuminate\Support\Facades\Redis;
 use App\Models\Subject;
-
+ini_set ( 'max_execution_time' , 360 );
 
 class TimeTableBrain
 {
@@ -115,10 +115,6 @@ AND ft.teacher_id = :id" ) , array('id' => $id , 'avger' => intval ( $timerr[ 0 
 
                             $randomology = array_rand ( $x , 11 );
                             $finalrnd = array(
-                                $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] , $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] ,
-                                $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] , $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] ,
-                                $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] , $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] ,
-                                $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] , $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] ,
                                 $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] , $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] ,
                                 $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] , $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] ,
                                 $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] , $x[ $randomology[ mt_rand ( 0 , 10 ) ] ] ,
@@ -323,12 +319,12 @@ AND ft.teacher_id = :id" ) , array('id' => $id , 'avger' => intval ( $timerr[ 0 
                         'start_time' => $timetable_pool[ "start_time" ] ,
                         'end_time' => $timetable_pool[ 'end_time' ] ,
                         'indicator' => $timetable_pool[ 'indicator' ]);
-                    $tp = (new DateTime( "-7 day next " . $timetable_pool[ "weekday" ] ))->format ( "y-m-d" );
+
                 }
 
             }
 
-
+            $tp = (new DateTime( " next " . $timetable_pool[ "weekday" ] ))->format ( "y-m-d" );
             if ($timetable_pool[ "this_belong" ][ "year" ] === 1) {
                 $color = "#FFCCE5";
             } elseif ($timetable_pool[ "this_belong" ][ "year" ] === 2) {
@@ -384,7 +380,7 @@ AND ft.teacher_id = :id" ) , array('id' => $id , 'avger' => intval ( $timerr[ 0 
                     'start_time' => $timetable_pool[ "start_time" ] ,
                     'end_time' => $timetable_pool[ 'end_time' ] ,
                     'indicator' => $timetable_pool[ 'indicator' ]);
-                $tp = (new DateTime( "-7 day next " . $timetable_pool[ "weekday" ] ))->format ( "y-m-d" );
+                $tp = (new DateTime( " next " . $timetable_pool[ "weekday" ] ))->format ( "y-m-d" );
                 array_push ( $iff , array("title" => $timetable_pool[ "this_belong" ][ "subject_name" ] . " " . $timetable_pool[ "teacher_id" ] , "start" => date_format ( new DateTime( $tp . " " . $timetable_pool[ "start_time" ] ) , "Y-m-d H:i:s" ) , "end" => date_format ( new DateTime( $tp . " " . $timetable_pool[ "end_time" ] ) , "Y-m-d H:i:s" )) );
             } else {
 
@@ -407,7 +403,7 @@ AND ft.teacher_id = :id" ) , array('id' => $id , 'avger' => intval ( $timerr[ 0 
                 'start_time' => $timetable_pool[ "start_time" ] ,
                 'end_time' => $timetable_pool[ 'end_time' ] ,
                 'indicator' => $timetable_pool[ 'indicator' ]);
-            $tp = (new DateTime( "-7 day next " . $timetable_pool[ "weekday" ] ))->format ( "y-m-d" );
+            $tp = (new DateTime( " next " . $timetable_pool[ "weekday" ] ))->format ( "y-m-d" );
 
             if ($timetable_pool[ "this_belong" ][ "year" ] === 1) {
                 $color = "#FFCCE5";
