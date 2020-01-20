@@ -68,13 +68,11 @@ Route::get ( '/management/teacher/api' , 'TeacherController@apiView' );
 /* TIMETABLE MANAGEMENT ROUTER */
 
 /* DANGEROUS FIELD */
-Route::get ( '/management/countlectburden' , 'TimeTableController@countLectBurden' );
 Route::get ( '/management/admin/generatetimeslot' , 'TimeTableController@generateTimeslot' );
 Route::get ( '/management/admin/generateTimeTablePerPerson' , 'TimeTableController@generateTimeTablePerPerson' );
 Route::get ( '/management/timetable/view/{teacher_id}' , 'TimeTableController@viewTimeTableTeacherID' );
 Route::get ( '/management/timetable/view' , 'TimeTableController@viewAllTeacher' );
 Route::get ( '/management/timetable/view/modular/{ctg}' , 'TimeTableController@viewModularCTG' );
 Route::get ( '/management/admin/admincontrol' , 'AdminController@index' )->name ( 'Admincontrol' );
-Route::get ( '/management/ttb' , 'TimeTableController@ex' );
 /* DANGEROUS FIELD */
 /* ¯\_(ツ)_/¯ */
