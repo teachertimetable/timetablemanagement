@@ -1,5 +1,8 @@
 @extends('.layouts.timetable_layout')
 <style>
+    .bgab{
+        padding-top: 2%;
+    }
     .zoom {
         transition: transform .2s; /* Animation */
         margin: 0 auto;
@@ -14,18 +17,18 @@
             <div class="animated zoomIn table-responsive jumbotron shadow">
                 <center><h1 class="animated zoomIn">ผู้จัดทำ</h1><br><br>
                 <div class="row">
-                    <div class="zoom animated fadeIn bg-white col-md-3" style="margin-left: 4%;margin-right: 4%">
-                        <img src="{{URL::asset('/img/profile.jpg')}}" alt="profile Pic" height="200" width="200">
+                    <div class="bgab zoom animated fadeIn bg-white col-md-3" style="margin-left: 4%;margin-right: 4%">
+                        <img class="img-thumbnail" src="{{URL::asset('/img/B5970216.jpg')}}" alt="profile Pic" height="180" width="150"><br><br>
                         <h5>B5970216</h5> <h5>นายคุณานนต์ เรียนชอบ</h5>
                     </div>
                     <br>
-                    <div class="zoom animated fadeIn bg-white col-md-3"style="margin-left: 4%;margin-right: 4%">
-                        <img src="{{URL::asset('/img/profile.jpg')}}" alt="profile Pic" height="200" width="200">
+                    <div class="bgab zoom animated fadeIn bg-white col-md-3"style="margin-left: 4%;margin-right: 4%">
+                        <img class="img-thumbnail" src="{{URL::asset('/img/B5972364.jpg')}}" alt="profile Pic" height="180" width="150"><br><br>
                         <h5>B5970544</h5> <h5>นายอัศนันท์ อภิสิทธิ์วรโชติ</h5>
                     </div>
                     <br>
-                    <div class="zoom animated fadeIn bg-white col-md-3"style="margin-left: 4%;margin-right: 4%">
-                        <img src="{{URL::asset('/img/profile.jpg')}}" alt="profile Pic" height="200" width="200">
+                    <div class="bgab zoom animated fadeIn bg-white col-md-3"style="margin-left: 4%;margin-right: 4%">
+                        <img class="img-thumbnail" src="{{URL::asset('/img/B5972364.jpg')}}" alt="profile Pic" height="180" width="150"><br><br>
                         <h5>B5972364</h5> <h5>นายไพฑูรย์ เนติรังษีวัชรา</h5>
                     </div>
                 </div><br>

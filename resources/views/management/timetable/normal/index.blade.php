@@ -1,7 +1,7 @@
 @extends('.layouts.timetable_layout')
 
 @section('content')
-    <div class="animated fadeInDown container py-3">
+    <div class="animated zoomIn container py-3">
         <div class="jumbotron">
             <center><h1>ตารางแนะนำ</h1><br>
                 <div class="dropdown">
