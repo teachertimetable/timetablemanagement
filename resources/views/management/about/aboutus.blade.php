@@ -18,12 +18,12 @@
                         <img src="{{URL::asset('/img/profile.jpg')}}" alt="profile Pic" height="200" width="200">
                         <h5>B5970216</h5> <h5>นายคุณานนต์ เรียนชอบ</h5>
                     </div>
-
+                    <br>
                     <div class="zoom animated fadeIn bg-white col-md-3"style="margin-left: 4%;margin-right: 4%">
                         <img src="{{URL::asset('/img/profile.jpg')}}" alt="profile Pic" height="200" width="200">
                         <h5>B5970544</h5> <h5>นายอัศนันท์ อภิสิทธิ์วรโชติ</h5>
                     </div>
-
+                    <br>
                     <div class="zoom animated fadeIn bg-white col-md-3"style="margin-left: 4%;margin-right: 4%">
                         <img src="{{URL::asset('/img/profile.jpg')}}" alt="profile Pic" height="200" width="200">
                         <h5>B5972364</h5> <h5>นายไพฑูรย์ เนติรังษีวัชรา</h5>
