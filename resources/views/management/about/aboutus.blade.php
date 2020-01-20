@@ -29,6 +29,7 @@
                         <h5>B5972364</h5> <h5>นายไพฑูรย์ เนติรังษีวัชรา</h5>
                     </div>
                 </div>
+                    <br>
                 </center></div>
     </div>
 @endsection
