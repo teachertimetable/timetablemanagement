@@ -68,16 +68,13 @@ Route::get ( '/management/teacher/api' , 'TeacherController@apiView' );
 /* TIMETABLE MANAGEMENT ROUTER */
 
 /* DANGEROUS FIELD */
-Route::get ( '/management/gettime' , 'TimeTableController@shaping' );
-Route::get ( '/management/gettime/showM' , 'TimeTableController@minimalShaping' );
-Route::post ( '/management/gettime/showWithID' , 'TimeTableController@minimalShapingWithID' );
-Route::get ( '/management/gettime/showWithID/{teacher_id}' , 'TimeTableController@minimalShapingWithID' );
-Route::get ( '/management/gettime/showTimeAvail' , 'TimeTableController@weekdayUnDuplicator' );
-Route::get ( '/management/gettime/showTimeWithLect' , 'TimeTableController@weekdaySearcher' );
 Route::get ( '/management/countlectburden' , 'TimeTableController@countLectBurden' );
-Route::get ( '/weighter' , 'TimeTableController@weighter' );
-Route::get ( '/pooler/{action}' , 'TimeTablePoolerController@index' );
-Route::get ( '/experimental/{id}' , 'TimeTableController@experimental' );
-Route::get ( '/experimental' , 'TimeTableController@experimental2' );
+Route::get ( '/management/admin/generatetimeslot' , 'TimeTableController@generateTimeslot' );
+Route::get ( '/management/admin/generateTimeTablePerPerson' , 'TimeTableController@generateTimeTablePerPerson' );
+Route::get ( '/management/timetable/view/{teacher_id}' , 'TimeTableController@viewTimeTableTeacherID' );
+Route::get ( '/management/timetable/view' , 'TimeTableController@viewAllTeacher' );
+Route::get ( '/management/timetable/view/modular/{ctg}' , 'TimeTableController@viewModularCTG' );
+Route::get ( '/management/admin/admincontrol' , 'AdminController@index' )->name ( 'Admincontrol' );
+Route::get ( '/management/ttb' , 'TimeTableController@ex' );
 /* DANGEROUS FIELD */
 /* ¯\_(ツ)_/¯ */
