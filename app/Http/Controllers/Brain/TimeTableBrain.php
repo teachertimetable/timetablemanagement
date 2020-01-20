@@ -38,22 +38,6 @@ class TimeTableBrain
     /** @var $TIMETABLE_POOLER_ARRAY */
     public static $TIMETABLE_POOLER_ARRAY = array();
 
-    /** function countLectBurden() for Counting Burden in Lecturer */
-    public static function countLectBurden()
-    {
-        $rank = [];
-        $item = 0;
-        $count = Constraint::select ( DB::raw ( "teacher_id,count(weekday) as wkd" ) )->groupBy ( 'teacher_id' )->orderBy ( 'wkd' , 'DESC' )->get ();
-        foreach ($count as $ct) {
-            if ($ct[ "wkd" ] >= 2) {
-                $rank[] = array("teacher_id" => $ct[ "teacher_id" ] , "rank" => $ct[ "wkd" ]);
-            } else {
-                $rank[] = array("teacher_id" => $ct[ "teacher_id" ] , "rank" => $ct[ "wkd" ]);
-            }
-        }
-        return $rank;
-    }
-
     public static function showSubjectWithID_NonModular($id)
     {
         $iff = [];

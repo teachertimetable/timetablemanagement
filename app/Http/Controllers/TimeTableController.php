@@ -81,11 +81,6 @@ class TimeTableController extends Controller
         return TimeTableBrain::showTimeTableModular ( $request->ctg );
     }
 
-    public function ex()
-    {
-        return TimeTableBrain::teacherTimeGenerate ();
-    }
-
     public function generateTimeTablePerPerson(Request $request)
     {
         if ($request->ajax ()) {
