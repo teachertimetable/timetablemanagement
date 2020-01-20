@@ -3,9 +3,9 @@
 @section('content')
 
     <div class="container">
-        <div class="jumbotron shadow bg-white">
+        <div class="animated fadeIn jumbotron shadow bg-white">
             <div class="container">
-                <h2>ข้อมูลอาจารย์</h2>
+                <h2 class="animated zoomIn">ข้อมูลอาจารย์</h2>
                 <hr></hr>
                 <div class="row">
                     @foreach($userget as $u)
@@ -38,9 +38,9 @@
                 </div>
             </div>
         </div>
-        <div class="jumbotron shadow">
+        <div class="animated fadeIn jumbotron shadow">
             <div class="container">
-                <h2>รายวิชาที่ท่านสอน</h2>
+                <h2 class="animated zoomIn">รายวิชาที่ท่านสอน</h2>
                 <hr></hr>
                 <div class="container">
                     <table class="table table-bordered" id="teachsubjectView">
@@ -56,9 +56,9 @@
                 </div>
             </div>
         </div>
-        <div class="jumbotron shadow bg-white">
+        <div class="animated fadeIn jumbotron shadow bg-white">
             <div class="container">
-                <h2>วิชาที่ท่านได้สอนจากการแนะนำของระบบตาราง</h2>
+                <h2 class="animated zoomIn">วิชาที่ท่านได้สอนจากการแนะนำของระบบตาราง</h2>
                 <hr></hr>
                 <div class="container" id="tblect">
                     <table class="table" id="tablelect">
