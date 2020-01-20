@@ -24,6 +24,10 @@ Route::get ( '/management/editinfo' , 'UserInfoController@reach' );
 Route::post ( '/management/editinfo' , 'UserInfoController@edit' );
 /* GENERAL CONTROLLER */
 
+/* ABOUT CONTROLLER */
+Route::get ( '/management/about/aboutus' , 'AboutController@index' )->name ( 'aboutus' );
+/* ABOUT CONTROLLER */
+
 /* HOME CONTROLLER */
 Route::get ( '/' , 'HomeController@index' );
 /* HOME CONTROLLER */

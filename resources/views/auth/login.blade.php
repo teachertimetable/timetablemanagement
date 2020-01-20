@@ -1,13 +1,13 @@
 @extends('.layouts.timetable_layout')
 
 @section('content')
-    <div class="container">
+    <div class="animated fadeInDown container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow">
                     <div class="card-header">{{ __('เข้าสู่ระบบ') }}</div>
 
-                    <div class="card-body">
+                    <div class="animated zoomIn card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 

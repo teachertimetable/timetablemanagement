@@ -14,6 +14,7 @@
         "laravel/tinker": "^1.0",
         "laravel/ui": "^1.1",
         "predis/predis": "^1.1",
+        "uxweb/sweet-alert": "^2.0",
         "yajra/laravel-datatables-oracle": "^9.7"
     },
     "require-dev": {

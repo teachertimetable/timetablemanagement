@@ -1,9 +1,9 @@
 @extends('.layouts.timetable_layout')
 
 @section('content')
-    <div class="container py-3">
+    <div class="animated fadeIn container py-3">
         <div class="table-responsive jumbotron shadow">
-            <h2 style="text-align:center">อาจารย์ประจำสาขา</h2>
+            <h2 class="animated zoomIn" style="text-align:center">อาจารย์ประจำสาขา</h2>
             <table class="table table-bordered" id="lecturerView">
                 <thead>
                     <tr>

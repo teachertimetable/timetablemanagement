@@ -67,6 +67,7 @@
                                    aria-haspopup="true"
                                    aria-expanded="false">สวัสดี คุณ {{ Auth::user()->name }} {{ Auth::user()->surname }}</a>
                                 <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ route('aboutus') }}">ผู้จัดทำ</a>
                                     <a class="dropdown-item" id="editInformation" data-user_id="{{ Auth::user()->id }}">แก้ไขข้อมูลส่วนตัว</a>
                                     <a class="dropdown-item" id="logout">ออกจากระบบ</a>
                                 </div>
@@ -83,4 +84,16 @@
             @yield('content')
         </main>
     </div>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 IT Sranaree:
+        <a href="http://soctech.sut.ac.th/it/webitsut2015/index.php">http://soctech.sut.ac.th</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
 </body>

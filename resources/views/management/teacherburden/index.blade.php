@@ -7,14 +7,15 @@
                 <h1 class="display-4">กรุณาเข้าสู่ระบบก่อนทำรายการทั้งหมด</h1>
             </div>
         @else
-            <div class="table-responsive jumbotron shadow">
+            <div class="animated zoomIn table-responsive jumbotron shadow">
                 <form class="form-group" method="POST" action="{{ route('saveTeacherBurden') }}">
                     {{ @csrf_field () }}
-                    <h2 style="text-align:center">เงื่อนไขของอาจารย์</h2>
-                    กรอกเงื่อนไขการสอน
-                    <input type="text" class="form-control" placeholder="ภาระการสอน" name="constraint_title"><br>
+
+                    <h2 class="animated zoomIn "style="text-align:center">เงื่อนไขของอาจารย์</h2>
+                    <div class="animated fadeInDown ">กรอกเงื่อนไขการสอน
+                    <input type="text" class="form-control" placeholder="ภาระการสอน" name="constraint_title"><br></div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="animated fadeInDown col-md-6">
                             วันที่ไม่สะดวกสอน<br>
                             <select class="form-control" name="weekday" id="day" name="sellist1">
                                 <option value="mon">จันทร์</option>
@@ -27,7 +28,7 @@
                             </select>
                         </div>
                         <br>
-                        <div class="col-md-6">
+                        <div class="animated fadeInDown col-md-6">
                             ช่วงเวลา<br>
                             <div>
                                 <label class="form-check-label">
@@ -43,7 +44,7 @@
                             </div>
                         </div>
                     </div><br>
-                    <div class="row">
+                    <div class="animated fadeInDown  row">
                         @if(Auth::user()->privileges == 1)
                             <div class="col-md-12">เลือกอาจารย์</div>
                             <div class="col-md-12">
@@ -62,7 +63,7 @@
                         @endif
                     </div>
                     <br>
-                    <div style="text-align:center"><input type="submit" class="btn btn-primary btn-md" value="บันทึก"
+                    <div style="text-align:center"><input type="submit" class="animated zoomIn btn btn-primary btn-md" value="บันทึก"
                                                           id=""/></div>
                 </form>
             </div>

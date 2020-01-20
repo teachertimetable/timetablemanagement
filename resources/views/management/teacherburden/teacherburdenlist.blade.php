@@ -7,8 +7,8 @@
                 <h1 class="display-4">กรุณาเข้าสู่ระบบก่อนทำรายการทั้งหมด</h1>
             </div>
         @else
-            <div class="table-responsive jumbotron shadow">
-                <h2 style="text-align:center">รายการเงื่อนไขการสอน</h2>
+            <div class="animated fadeIn able-responsive jumbotron shadow">
+                <h2 class="animated zoomIn" style="text-align:center">รายการเงื่อนไขการสอน</h2>
                 <a href="{{ route('teacherBurdenAdd') }}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มเงื่อนไขการสอน</a><br>
                 <table class="table table-bordered" id="burdenView">
                     <thead>
