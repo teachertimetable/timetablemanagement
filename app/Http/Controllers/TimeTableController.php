@@ -100,4 +100,19 @@ class TimeTableController extends Controller
             }
         }
     }
+
+    public function deleteTimeTablePerPerson(Request $request){
+        if ($request->ajax ()) {
+            if (Auth::check ()) {
+                if (Auth::user ()->privileges === 1) {
+
+                }else {
+                    return response ( array('status' => 'incompleted') );
+                }
+            }else {
+                return response ( array('status' => 'unauthorized') );
+            }
+
+        }
+    }
 }

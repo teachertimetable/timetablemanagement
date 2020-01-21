@@ -542,8 +542,36 @@ $(function () {
                         )
                 }
             })
+        });
+        $('#deleteTimeTablePerPerson').click(function () {
+            $.ajax({
+                url: "/management/admin/deleteTimeTablePerPerson",
+                type: "GET",
+                "headers": {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                beforeSend: function () {
+                    Swal.fire(
+                        {
+                            title: "คำเตือน",
+                            html: "กรุณารอการลบเวลาสอนสักครู่",
+                            icon: 'warning',
+                            onBeforeOpen: () => {
+                                Swal.showLoading()
+                            }
+                        }
+                    )
+                },
+                success: function (result) {
+                    if (result.status === "generate_completed")
+                        Swal.fire(
+                            {
+                                title: "คำเตือน",
+                                html: "ลบเวลาสอนของอาจารย์เสร็จแล้ว",
+                                icon: 'success'
+                            }
+                        )
+                }
+            })
         })
-
     });
 
 

@@ -69,6 +69,7 @@ Route::get ( '/management/teacher/api' , 'TeacherController@apiView' );
 
 /* DANGEROUS FIELD */
 Route::get ( '/management/admin/generatetimeslot' , 'TimeTableController@generateTimeslot' );
+Route::get ( '/management/admin/deleteTimeTablePerPerson' , 'TimeTableController@deleteTimeTablePerPerson' );
 Route::get ( '/management/admin/generateTimeTablePerPerson' , 'TimeTableController@generateTimeTablePerPerson' );
 Route::get ( '/management/timetable/view/{teacher_id}' , 'TimeTableController@viewTimeTableTeacherID' );
 Route::get ( '/management/timetable/view' , 'TimeTableController@viewAllTeacher' );
